@@ -28,16 +28,16 @@
 @end
 
 @implementation ViewController
-@synthesize plots, totals;
+@synthesize plots, totals, zvals;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //NSMutableArray *testSignal = [NSMutableArray arrayWithObjects:
+    /*NSMutableArray *testSignal = [NSMutableArray arrayWithObjects:
                          [NSNumber numberWithFloat:6.9],
                          [NSNumber numberWithFloat:4.7],
                          [NSNumber numberWithFloat:6.6],
                          [NSNumber numberWithFloat:6.9],nil];
-    
+    */
     /*float[10] testValues = {1.0,2.0,1.0,2.0};
     NSMutableArray *testSignal = [[NSMutableArray alloc] init];
     for (float i=0; i<10; i++) {
@@ -131,7 +131,7 @@
         [self.totals removeObjectAtIndex:DATA_SIZE-1];
     }
     [self.plots insertObject:accelerometerData atIndex:0];
-    
+    [self.zvals insertObject:[[NSNumber alloc] initWithFloat:accelerometerData.acceleration.z] atIndex:0];
     NSNumber *n = [NSNumber numberWithDouble:(fabs(acceleration.x)+fabs(acceleration.y)+fabs(acceleration.z))];
     
     [self.totals insertObject:n atIndex:0];
