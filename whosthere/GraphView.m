@@ -124,13 +124,13 @@
     }
     CGContextStrokePath(c);
     
-    BOOL drawTotalAcceleration = NO;
+    BOOL drawTotalAcceleration = YES;
     if(drawTotalAcceleration){
         //totals
         CGContextBeginPath(c);
         CGContextSetStrokeColor(c, yellow);
         CGContextSetFillColor(c, yellow);
-        double lowPassResults;
+        double lowPassResults = 0.0;
         CGContextMoveToPoint(c, 20.0f, _AXIS_ORIGIN_Y-_AXIS_LENGTH_Y);
         for (int i=1; i<[currentV.totals count]; i++) {
             if ((25+2*i) < _AXIS_LENGTH_X) {

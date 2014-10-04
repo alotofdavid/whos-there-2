@@ -9,6 +9,9 @@
 #import "ViewController.h"
 #import "GraphView.h"
 
+// 50 is good spot
+#define DATA_SIZE 50
+
 @interface ViewController ()
 
 @property (nonatomic, retain) IBOutlet UILabel *labelX;
@@ -18,8 +21,6 @@
 @property (nonatomic, retain) IBOutlet UIProgressView *progressX;
 @property (nonatomic, retain) IBOutlet UIProgressView *progressY;
 @property (nonatomic, retain) IBOutlet UIProgressView *progressZ;
-
-@property (nonatomic, retain) UIAccelerometer *accelerometer;
 
 @property (weak, nonatomic) IBOutlet GraphView *graphV;
 
@@ -31,9 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.accelerometer = [UIAccelerometer sharedAccelerometer];
-    self.accelerometer.updateInterval = .1;
-    self.accelerometer.delegate = self;
     NSMutableArray* signal = [[NSMutableArray alloc] init];
     [signal addObject:[NSNumber numberWithFloat:5]];
     [signal addObject:[NSNumber numberWithFloat:2]];
@@ -44,8 +42,8 @@
     self.motionManager.accelerometerUpdateInterval = .01;
     self.motionManager.gyroUpdateInterval = .01;
     
-    self.plots = [NSMutableArray arrayWithCapacity:10];
-    self.totals = [NSMutableArray arrayWithCapacity:10];
+    self.plots = [NSMutableArray arrayWithCapacity:DATA_SIZE];
+    self.totals = [NSMutableArray arrayWithCapacity:DATA_SIZE];
     
     [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue]
                                              withHandler:^(CMAccelerometerData  *accelerometerData, NSError *error) {
@@ -61,19 +59,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-    self.labelX.text = [NSString stringWithFormat:@"%@%f", @"X: ", acceleration.x];
-    self.labelY.text = [NSString stringWithFormat:@"%@%f", @"Y: ", acceleration.y];
-    self.labelZ.text = [NSString stringWithFormat:@"%@%f", @"Z: ", acceleration.z];
-    
-    self.progressX.progress = ABS(acceleration.x);
-    self.progressY.progress = ABS(acceleration.y);
-    self.progressZ.progress = ABS(acceleration.z);
-    NSLog(@"X is %f, Y is %f, Z is %f",acceleration.x, acceleration.y, acceleration.z);
-    
-}
-
 - (BOOL)detectKnock:(NSMutableArray *)signal {
     for (int i=0; i<signal.count-1; i++) {
         int tolerance = 1;
@@ -86,7 +71,24 @@
 
 
 -(void)outputAccelertionData:(CMAccelerometerData *)accelerometerData {
+    
     CMAcceleration acceleration = accelerometerData.acceleration;
+
+    //////////////////////////////////////////////////////////////////
+    
+    ////  THIS SLOWS DOWN ALOT SINCE IT UPDATES TEXT ALOT
+//    
+//    self.labelX.text = [NSString stringWithFormat:@"%@%f", @"X: ", acceleration.x];
+//    self.labelY.text = [NSString stringWithFormat:@"%@%f", @"Y: ", acceleration.y];
+//    self.labelZ.text = [NSString stringWithFormat:@"%@%f", @"Z: ", acceleration.z];
+//    
+//    self.progressX.progress = ABS(acceleration.x);
+//    self.progressY.progress = ABS(acceleration.y);
+//    self.progressZ.progress = ABS(acceleration.z);
+//    NSLog(@"X is %f, Y is %f, Z is %f",acceleration.x, acceleration.y, acceleration.z);
+    
+    //////////////////////////////////////
+    
     [[self view] setNeedsDisplay];
     [self.graphV setNeedsDisplay];
     
@@ -95,11 +97,11 @@
     float minimumAcceleration = 0.0f;
     
     NSLog(@"%lu", (unsigned long)[self.plots count]);
-    if([self.plots count] >= 50){
-        [self.plots removeObjectAtIndex:49];
+    if([self.plots count] >= DATA_SIZE){
+        [self.plots removeObjectAtIndex:DATA_SIZE-1];
     }
-    if([self.totals count] >= 50){
-        [self.totals removeObjectAtIndex:49];
+    if([self.totals count] >= DATA_SIZE){
+        [self.totals removeObjectAtIndex:DATA_SIZE-1];
     }
     [self.plots insertObject:accelerometerData atIndex:0];
     
