@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *knockLabel;
 @property(nonatomic, retain) NSMutableArray *plots;
 @property(nonatomic, retain) NSMutableArray *totals;
-
+@property(nonatomic, retain) NSMutableArray *zvals;
 @property (strong, nonatomic) CMMotionManager *motionManager;
 
 @end
