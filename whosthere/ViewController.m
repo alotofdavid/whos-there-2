@@ -76,10 +76,16 @@
 }
 
 - (BOOL)detectKnock:(NSMutableArray *)signal {
-    for (int i=0; i<signal.count-1; i++) {
-        int tolerance = 1;
-        if (((NSInteger)[signal objectAtIndex:i] - (NSInteger)[signal objectAtIndex:i+1])/ 2 > tolerance) {
-            return true;
+    int down_edge = -100;
+    int duration = 1;
+    int slope = .4;
+    for (int i=0; i<[signal count]-1; i++) {
+        if (((NSInteger)[signal objectAtIndex:i] - (NSInteger)[signal objectAtIndex:i+1]) > slope) {
+            down_edge = i;
+        } else if (((NSInteger)[signal objectAtIndex:i+1] - (NSInteger)[signal objectAtIndex:i]) > slope) {
+            if (down_edge >= i - duration) {
+                return true;
+            }
         }
     }
     return false;
@@ -104,7 +110,7 @@
 //    NSLog(@"X is %f, Y is %f, Z is %f",acceleration.x, acceleration.y, acceleration.z);
     
     //////////////////////////////////////
-    
+    NSLog(@"%d", [self detectKnock:self.plots]);
     [[self view] setNeedsDisplay];
     [self.graphV setNeedsDisplay];
     
@@ -120,15 +126,10 @@
     NSNumber *n = [NSNumber numberWithDouble:(fabs(acceleration.x)+fabs(acceleration.y)+fabs(acceleration.z))];
     
     [self.totals insertObject:n atIndex:0];
-    
-    if(abs(acceleration.x)+abs(acceleration.y)+abs(acceleration.z) > minimumAcceleration){
-        
-    }
+
     
     
 }
-
-- (BOOL)detectKnock:(NSArray*)
 
 - (IBAction)sendNotification:(id)sender {
     
