@@ -43,7 +43,7 @@
         NSNumber* num = [[NSNumber alloc] initWithFloat:testValues[i]];
         [testSignal addObject:num];
     }*/
-    NSLog(@"%d",[self detectKnock:testSignal]);
+    NSLog(@"%d",[self detectKnock:[testSignal objectAtIndex:0]:[testSignal objectAtIndex:1]:[testSignal objectAtIndex:2]]);
     // Do any additional setup after loading the view.
     self.motionManager = [[CMMotionManager alloc] init];
     self.motionManager.accelerometerUpdateInterval = .01;
@@ -51,6 +51,7 @@
     
     self.plots = [NSMutableArray arrayWithCapacity:DATA_SIZE];
     self.totals = [NSMutableArray arrayWithCapacity:DATA_SIZE];
+    self.zvals = [NSMutableArray arrayWithCapacity:DATA_SIZE];
     
     [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue]
                                              withHandler:^(CMAccelerometerData  *accelerometerData, NSError *error) {
@@ -80,11 +81,23 @@
    
 }
 
-- (BOOL)detectKnock:(NSMutableArray *)signal {
+- (BOOL)detectKnock:(NSNumber*)first:(NSNumber*)second:(NSNumber*)third {
     int down_edge = -100;
     int duration = 1;
-    int slope = .4;
-    for (int i=0; i<[signal count]-1; i++) {
+    float slope = .18;
+    if ([first floatValue] - [second floatValue] > slope) {
+        if ([third floatValue] - [second floatValue] > slope) {
+            return true;
+        }
+    }
+    if ([first floatValue] - [second floatValue] < -1*slope) {
+        if ([third floatValue] - [second floatValue] < -1*slope) {
+            return true;
+        }
+    }
+
+   /* for (int i=0; i<[signal count]-1; i++) {
+        NSLog(@"checking i = %d", i);
         if (([[signal objectAtIndex:i] floatValue] - [[signal objectAtIndex:i+1] floatValue]) > slope) {
             down_edge = i;
         } else if (((NSInteger)[signal objectAtIndex:i+1] - (NSInteger)[signal objectAtIndex:i]) > slope) {
@@ -92,10 +105,10 @@
                 return true;
             }
         }
-    }
+    }*/
     return false;
 }
-
+int x;
 
 -(void)outputAccelertionData:(CMAccelerometerData *)accelerometerData {
     
@@ -103,7 +116,7 @@
 
     //////////////////////////////////////////////////////////////////
     
-    ////  THIS SLOWS DOWN ALOT SINCE IT UPDATES TEXT ALOT
+    ////  THIS SLOWS DOWN A LOT SINCE IT UPDATES TEXT A LOT
 //    
 //    self.labelX.text = [NSString stringWithFormat:@"%@%f", @"X: ", acceleration.x];
 //    self.labelY.text = [NSString stringWithFormat:@"%@%f", @"Y: ", acceleration.y];
@@ -116,9 +129,6 @@
     
     //////////////////////////////////////
     
-    if ([self.plots count] > 10) {
-        NSLog(@"%d", [self detectKnock:self.plots]);
-    }
     [[self view] setNeedsDisplay];
     [self.graphV setNeedsDisplay];
     
@@ -129,12 +139,23 @@
     if([self.totals count] >= DATA_SIZE){
         [self.totals removeObjectAtIndex:DATA_SIZE-1];
     }
+    if([self.zvals count] >= DATA_SIZE){
+        [self.zvals removeObjectAtIndex:DATA_SIZE-1];
+    }
     [self.plots insertObject:accelerometerData atIndex:0];
-    [self.zvals insertObject:[[NSNumber alloc] initWithFloat:accelerometerData.acceleration.z] atIndex:0];
+    [self.zvals insertObject:[[NSNumber alloc] initWithFloat:acceleration.z] atIndex:0];
     NSNumber *n = [NSNumber numberWithDouble:(fabs(acceleration.x)+fabs(acceleration.y)+fabs(acceleration.z))];
     
     [self.totals insertObject:n atIndex:0];
-
+    if ([self.zvals count] > 2) {
+        if([self detectKnock:[self.zvals objectAtIndex:0]:[self.zvals objectAtIndex:1]:[self.zvals objectAtIndex:2]]) {
+            self.knockLabel.text = @"KNOCK!";
+            x++;
+            NSLog(@"%i", x);
+        } else {
+            self.knockLabel.text = @"";
+        }
+    }
     
     
 }

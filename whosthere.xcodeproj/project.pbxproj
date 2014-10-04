@@ -464,7 +464,7 @@
 				INFOPLIST_FILE = whosthere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "be47229c-7711-4e22-a38c-e09866bba0c0";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -482,7 +482,7 @@
 				INFOPLIST_FILE = whosthere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "be47229c-7711-4e22-a38c-e09866bba0c0";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
