@@ -14,6 +14,7 @@
     NSMutableArray *plots;
     NSMutableArray *totals;
 }
+@property (weak, nonatomic) IBOutlet UILabel *knockLabel;
 @property(nonatomic, retain) NSMutableArray *plots;
 @property(nonatomic, retain) NSMutableArray *totals;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5qS-1M-wfH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5qS-1M-wfH">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
@@ -114,6 +114,12 @@
                                     <navigationItem title="Graph / Activity" id="qrO-Mz-zMt"/>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opK-Ku-x1f">
+                                <rect key="frame" x="84" y="217" width="153" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -121,6 +127,7 @@
                     <navigationItem key="navigationItem" id="6zA-nJ-atH"/>
                     <connections>
                         <outlet property="graphV" destination="IDZ-07-4pr" id="nN8-MY-f9c"/>
+                        <outlet property="knockLabel" destination="opK-Ku-x1f" id="trv-bP-boQ"/>
                         <outlet property="labelX" destination="3iN-GB-SO7" id="w1L-BB-DEz"/>
                         <outlet property="labelY" destination="s0l-eD-068" id="Lwk-0O-0sV"/>
                         <outlet property="labelZ" destination="4KW-vE-e2g" id="yG6-fk-Dwl"/>

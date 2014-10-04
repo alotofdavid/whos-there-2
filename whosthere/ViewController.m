@@ -108,8 +108,6 @@
     [[self view] setNeedsDisplay];
     [self.graphV setNeedsDisplay];
     
-    float minimumAcceleration = 0.0f;
-    
     NSLog(@"%lu", (unsigned long)[self.plots count]);
     if([self.plots count] >= DATA_SIZE){
         [self.plots removeObjectAtIndex:DATA_SIZE-1];
@@ -129,6 +127,9 @@
     
     
 }
+
+- (BOOL)detectKnock:(NSArray*)
+
 - (IBAction)sendNotification:(id)sender {
     
     // Create our Installation query
