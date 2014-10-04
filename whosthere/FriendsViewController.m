@@ -45,7 +45,6 @@
     NSString *cellText = obj[@"displayName"];
     cell.textLabel.text = cellText;
     NSString *pictureURL =obj[@"profilePictureURL"];
-    NSString *ownerId = obj.objectId;
     UIImage *img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:pictureURL]]];
     cell.imageView.image = img;
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];

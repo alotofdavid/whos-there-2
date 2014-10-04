@@ -16,7 +16,7 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+//    [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
@@ -45,8 +45,11 @@
 //    NSArray *messageRecipients = [message objectForKey:@"recipientIds"];
 
     PFQuery *pushQuery = [PFInstallation query];
-    [pushQuery whereKey:@"owner" equalTo:self.ownerId];
-    
+    NSLog(@"Their ID:%@", self.idForCell);
+    NSLog(@"My ID:%@", [PFUser currentUser].objectId);
+    [pushQuery whereKey:@"owner" equalTo:self.idForCell];
+//    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+
     PFPush *push = [[PFPush alloc] init];
     [push setQuery:pushQuery];
     [push setMessage:[NSString stringWithFormat: @"New Message from %@!",  [PFUser currentUser][@"displayName"]]];

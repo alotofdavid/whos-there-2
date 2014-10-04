@@ -12,7 +12,7 @@
 @property NSInteger vibrationCount;
 @property (weak, nonatomic) IBOutlet UITextField *numberField;
 @property (strong, nonatomic)NSString *idForCell;
-@property (strong, nonatomic) NSString *ownerId;
+@property (strong, nonatomic)NSString *userName;
 
 
 @end
