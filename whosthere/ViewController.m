@@ -32,6 +32,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //NSMutableArray *testSignal = [NSMutableArray arrayWithObjects:
+                         [NSNumber numberWithFloat:6.9],
+                         [NSNumber numberWithFloat:4.7],
+                         [NSNumber numberWithFloat:6.6],
+                         [NSNumber numberWithFloat:6.9],nil];
+    
+    /*float[10] testValues = {1.0,2.0,1.0,2.0};
+    NSMutableArray *testSignal = [[NSMutableArray alloc] init];
+    for (float i=0; i<10; i++) {
+        NSNumber* num = [[NSNumber alloc] initWithFloat:testValues[i]];
+        [testSignal addObject:num];
+    }*/
+    //NSLog(@"%d",[self detectKnock:testSignal]);
     // Do any additional setup after loading the view.
     self.motionManager = [[CMMotionManager alloc] init];
     self.motionManager.accelerometerUpdateInterval = .01;
@@ -73,7 +86,7 @@
     int duration = 1;
     int slope = .4;
     for (int i=0; i<[signal count]-1; i++) {
-        if (((NSInteger)[signal objectAtIndex:i] - (NSInteger)[signal objectAtIndex:i+1]) > slope) {
+        if (([[signal objectAtIndex:i] floatValue] - [[signal objectAtIndex:i+1] floatValue]) > slope) {
             down_edge = i;
         } else if (((NSInteger)[signal objectAtIndex:i+1] - (NSInteger)[signal objectAtIndex:i]) > slope) {
             if (down_edge >= i - duration) {
@@ -103,13 +116,14 @@
 //    NSLog(@"X is %f, Y is %f, Z is %f",acceleration.x, acceleration.y, acceleration.z);
     
     //////////////////////////////////////
+    
     if ([self.plots count] > 10) {
         NSLog(@"%d", [self detectKnock:self.plots]);
     }
     [[self view] setNeedsDisplay];
     [self.graphV setNeedsDisplay];
     
-    NSLog(@"%lu", (unsigned long)[self.plots count]);
+    //NSLog(@"%lu", (unsigned long)[self.plots count]);
     if([self.plots count] >= DATA_SIZE){
         [self.plots removeObjectAtIndex:DATA_SIZE-1];
     }
