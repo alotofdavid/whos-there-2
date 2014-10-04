@@ -33,13 +33,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSMutableArray* signal = [[NSMutableArray alloc] init];
-    [signal addObject:[NSNumber numberWithFloat:5]];
-    [signal addObject:[NSNumber numberWithFloat:2]];
-    
-
-    NSLog(@"%d", [self detectKnock:signal]);
-    
     self.motionManager = [[CMMotionManager alloc] init];
     self.motionManager.accelerometerUpdateInterval = .01;
     self.motionManager.gyroUpdateInterval = .01;
@@ -110,7 +103,9 @@
 //    NSLog(@"X is %f, Y is %f, Z is %f",acceleration.x, acceleration.y, acceleration.z);
     
     //////////////////////////////////////
-    NSLog(@"%d", [self detectKnock:self.plots]);
+    if ([self.plots count] > 10) {
+        NSLog(@"%d", [self detectKnock:self.plots]);
+    }
     [[self view] setNeedsDisplay];
     [self.graphV setNeedsDisplay];
     
