@@ -132,7 +132,7 @@
                 peakPowerForChannel = peakPowerForChannel * 50;
                 lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * oldLowPass;
                 CGContextAddLineToPoint(c, 25+2*i, _AXIS_ORIGIN_Y - (80*j.integerValue));
-//                CGContextAddLineToPoint(c, _AXIS_ORIGIN_X+2*i, _AXIS_ORIGIN_Y-_AXIS_LENGTH_Y - lowPassResults);
+                //                CGContextAddLineToPoint(c, _AXIS_ORIGIN_X+2*i, _AXIS_ORIGIN_Y-_AXIS_LENGTH_Y - lowPassResults);
             }
         }
         CGContextStrokePath(c);
