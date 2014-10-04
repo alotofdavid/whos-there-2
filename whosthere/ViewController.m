@@ -32,19 +32,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /*NSMutableArray *testSignal = [NSMutableArray arrayWithObjects:
+    NSMutableArray *testSignal = [NSMutableArray arrayWithObjects:
                          [NSNumber numberWithFloat:6.9],
                          [NSNumber numberWithFloat:4.7],
                          [NSNumber numberWithFloat:6.6],
                          [NSNumber numberWithFloat:6.9],nil];
-    */
-    /*float[10] testValues = {1.0,2.0,1.0,2.0};
-    NSMutableArray *testSignal = [[NSMutableArray alloc] init];
+    
+    /*NSMutableArray *testSignal = [[NSMutableArray alloc] init];
     for (float i=0; i<10; i++) {
         NSNumber* num = [[NSNumber alloc] initWithFloat:testValues[i]];
         [testSignal addObject:num];
     }*/
-    //NSLog(@"%d",[self detectKnock:testSignal]);
+    NSLog(@"%d",[self detectKnock:testSignal]);
     // Do any additional setup after loading the view.
     self.motionManager = [[CMMotionManager alloc] init];
     self.motionManager.accelerometerUpdateInterval = .01;
