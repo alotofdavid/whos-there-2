@@ -43,9 +43,9 @@
     ////////////////////////////////////
     
 //    NSArray *messageRecipients = [message objectForKey:@"recipientIds"];
-    
+
     PFQuery *pushQuery = [PFInstallation query];
-    [pushQuery whereKey:@"owner" equalTo:];
+    [pushQuery whereKey:@"owner" equalTo:self.ownerId];
     
     PFPush *push = [[PFPush alloc] init];
     [push setQuery:pushQuery];
