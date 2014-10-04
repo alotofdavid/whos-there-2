@@ -36,6 +36,7 @@
     [signal addObject:[NSNumber numberWithFloat:5]];
     [signal addObject:[NSNumber numberWithFloat:2]];
     
+
     NSLog(@"%d", [self detectKnock:signal]);
     
     self.motionManager = [[CMMotionManager alloc] init];
@@ -53,10 +54,24 @@
                                                      NSLog(@"%@", error);
                                                  }
                                              }];
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+    self.labelX.text = [NSString stringWithFormat:@"%@%f", @"X: ", acceleration.x];
+    self.labelY.text = [NSString stringWithFormat:@"%@%f", @"Y: ", acceleration.y];
+    self.labelZ.text = [NSString stringWithFormat:@"%@%f", @"Z: ", acceleration.z];
+    
+    self.progressX.progress = ABS(acceleration.x);
+    self.progressY.progress = ABS(acceleration.y);
+    self.progressZ.progress = ABS(acceleration.z);
+   // NSLog(@"X is %f, Y is %f, Z is %f",acceleration.x, acceleration.y, acceleration.z);
+   
 }
 
 - (BOOL)detectKnock:(NSMutableArray *)signal {
