@@ -35,7 +35,7 @@
     [signal addObject:[NSNumber numberWithFloat:5]];
     [signal addObject:[NSNumber numberWithFloat:2]];
     
-    NSLog(@"%d", [self detectKnock:signal]);
+   // NSLog(@"%d", [self detectKnock:signal]);
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -51,8 +51,8 @@
     self.progressX.progress = ABS(acceleration.x);
     self.progressY.progress = ABS(acceleration.y);
     self.progressZ.progress = ABS(acceleration.z);
-    NSLog(@"X is %f, Y is %f, Z is %f",acceleration.x, acceleration.y, acceleration.z);
-    
+   // NSLog(@"X is %f, Y is %f, Z is %f",acceleration.x, acceleration.y, acceleration.z);
+   
 }
 
 - (BOOL)detectKnock:(NSMutableArray *)signal {
