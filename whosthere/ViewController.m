@@ -31,6 +31,11 @@
     self.accelerometer = [UIAccelerometer sharedAccelerometer];
     self.accelerometer.updateInterval = .1;
     self.accelerometer.delegate = self;
+    NSMutableArray* signal = [[NSMutableArray alloc] init];
+    [signal addObject:[NSNumber numberWithFloat:5]];
+    [signal addObject:[NSNumber numberWithFloat:2]];
+    
+    NSLog(@"%d", [self detectKnock:signal]);
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -48,6 +53,16 @@
     self.progressZ.progress = ABS(acceleration.z);
     NSLog(@"X is %f, Y is %f, Z is %f",acceleration.x, acceleration.y, acceleration.z);
     
+}
+
+- (BOOL)detectKnock:(NSMutableArray *)signal {
+    for (int i=0; i<signal.count-1; i++) {
+        int tolerance = 1;
+        if (((NSInteger)[signal objectAtIndex:i] - (NSInteger)[signal objectAtIndex:i+1])/ 2 > tolerance) {
+            return true;
+        }
+    }
+    return false;
 }
 
 @end

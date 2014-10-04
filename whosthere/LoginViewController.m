@@ -39,7 +39,7 @@
     
 }
 - (IBAction)loginbuttonHandler {
-    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_location",@"user_friends"];
+    NSArray *permissionsArray = @[@"user_friends"];
     //These are the things we ask facebook to know about the user
     
     [PFFacebookUtils initializeFacebook];
