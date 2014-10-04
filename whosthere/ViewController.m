@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "GraphView.h"
 
 @interface ViewController ()
 
@@ -20,10 +21,12 @@
 
 @property (nonatomic, retain) UIAccelerometer *accelerometer;
 
+@property (weak, nonatomic) IBOutlet GraphView *graphV;
 
 @end
 
 @implementation ViewController
+@synthesize plots, totals;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,6 +39,22 @@
     [signal addObject:[NSNumber numberWithFloat:2]];
     
     NSLog(@"%d", [self detectKnock:signal]);
+    
+    self.motionManager = [[CMMotionManager alloc] init];
+    self.motionManager.accelerometerUpdateInterval = .01;
+    self.motionManager.gyroUpdateInterval = .01;
+    
+    self.plots = [NSMutableArray arrayWithCapacity:10];
+    self.totals = [NSMutableArray arrayWithCapacity:10];
+    
+    [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue]
+                                             withHandler:^(CMAccelerometerData  *accelerometerData, NSError *error) {
+                                                 [self outputAccelertionData:accelerometerData];
+                                                 if(error){
+                                                     
+                                                     NSLog(@"%@", error);
+                                                 }
+                                             }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -65,4 +84,35 @@
     return false;
 }
 
+
+-(void)outputAccelertionData:(CMAccelerometerData *)accelerometerData {
+    CMAcceleration acceleration = accelerometerData.acceleration;
+    [[self view] setNeedsDisplay];
+    [self.graphV setNeedsDisplay];
+    
+    BOOL drawOnlyWhenMoving = NO;
+    
+    float minimumAcceleration = 0.0f;
+    
+    NSLog(@"%lu", (unsigned long)[self.plots count]);
+    if([self.plots count] >= 50){
+        [self.plots removeObjectAtIndex:49];
+    }
+    if([self.totals count] >= 50){
+        [self.totals removeObjectAtIndex:49];
+    }
+    [self.plots insertObject:accelerometerData atIndex:0];
+    
+    NSNumber *n = [NSNumber numberWithDouble:(fabs(acceleration.x)+fabs(acceleration.y)+fabs(acceleration.z))];
+    
+    [self.totals insertObject:n atIndex:0];
+    
+    if(abs(acceleration.x)+abs(acceleration.y)+abs(acceleration.z) > minimumAcceleration){
+        
+    }
+    
+    
+}
+
 @end
+

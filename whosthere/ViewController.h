@@ -7,8 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CoreMotion.h>
 
-@interface ViewController : UIViewController
+
+@interface ViewController : UIViewController{
+    NSMutableArray *plots;
+    NSMutableArray *totals;
+}
+@property(nonatomic, retain) NSMutableArray *plots;
+@property(nonatomic, retain) NSMutableArray *totals;
+
+@property (strong, nonatomic) CMMotionManager *motionManager;
+
 
 
 @end
