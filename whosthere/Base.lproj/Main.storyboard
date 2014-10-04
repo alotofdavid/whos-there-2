@@ -43,9 +43,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1j-Rj-Jza">
+                                <rect key="frame" x="158" y="441" width="51" height="30"/>
+                                <state key="normal" title="Friends">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gAO-pc-ekc" kind="modal" id="Zr2-0T-zRQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="6zA-nJ-atH"/>
                     <connections>
                         <outlet property="labelX" destination="3iN-GB-SO7" id="w1L-BB-DEz"/>
                         <outlet property="labelY" destination="s0l-eD-068" id="Lwk-0O-0sV"/>
@@ -57,7 +67,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="244" y="258"/>
+            <point key="canvasLocation" x="1294" y="258"/>
+        </scene>
+        <!--Friends View Controller-->
+        <scene sceneID="ZEm-YR-u6d">
+            <objects>
+                <viewController id="gAO-pc-ekc" customClass="FriendsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cc0-3Q-Ljr"/>
+                        <viewControllerLayoutGuide type="bottom" id="hqJ-Yv-31g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2v5-cW-HE5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2jc-xb-PRc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="Ydr-4g-HPW">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="Cell" tableViewCell="Ydr-4g-HPW" id="818-vh-OYH">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="gAO-pc-ekc" id="KIc-wN-V6W"/>
+                                    <outlet property="delegate" destination="gAO-pc-ekc" id="Jp8-sw-Lti"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ec8-PL-H5l"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JO7-Nq-uNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1734" y="258"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="BjK-oT-lR4">
@@ -83,10 +131,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="OJe-T1-BwG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rLd-Lw-043" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234" y="1005"/>
+            <point key="canvasLocation" x="942" y="987"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
