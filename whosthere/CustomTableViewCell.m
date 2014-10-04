@@ -7,6 +7,7 @@
 //
 
 #import "CustomTableViewCell.h"
+#import <Parse/Parse.h>
 
 @implementation CustomTableViewCell
 
@@ -23,6 +24,23 @@
     NSUserDefaults * def = [NSUserDefaults standardUserDefaults];
     [def setInteger:[self.numberField.text integerValue] forKey: self.idForCell];
     [def synchronize];
+}
+
+
+- (IBAction)sendNotification:(id)sender {
+//    NSArray *messageRecipients = [message objectForKey:@"recipientIds"];
+    
+//    PFQuery *pushQuery = [PFInstallation query];
+//    [pushQuery whereKey:@"owner" containedIn:messageRecipients];
+        
+    // Create our Installation query
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+    NSString *message = [NSString stringWithFormat: @"Hello from %@", [PFUser currentUser][@"displayName"]];
+    
+    // Send push notification to query
+    [PFPush sendPushMessageToQueryInBackground:pushQuery
+                                   withMessage:message];
 }
 
 @end

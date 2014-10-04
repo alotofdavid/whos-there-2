@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "GraphView.h"
+#import <Parse/Parse.h>
 
 // 50 is good spot
 #define DATA_SIZE 50
@@ -107,8 +108,6 @@
     [[self view] setNeedsDisplay];
     [self.graphV setNeedsDisplay];
     
-    BOOL drawOnlyWhenMoving = NO;
-    
     float minimumAcceleration = 0.0f;
     
     NSLog(@"%lu", (unsigned long)[self.plots count]);
@@ -129,6 +128,16 @@
     }
     
     
+}
+- (IBAction)sendNotification:(id)sender {
+    
+    // Create our Installation query
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+    
+    // Send push notification to query
+    [PFPush sendPushMessageToQueryInBackground:pushQuery
+                                   withMessage:@"Hello World!"];
 }
 
 @end

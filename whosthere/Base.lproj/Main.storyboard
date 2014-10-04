@@ -59,6 +59,17 @@
                                     <segue destination="gAO-pc-ekc" kind="modal" id="Zr2-0T-zRQ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mls-2S-Kmd">
+                                <rect key="frame" x="9" y="162" width="82" height="36"/>
+                                <color key="backgroundColor" red="0.53028415902612469" green="0.54212165980966631" blue="0.56859290081521741" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="PARSE">
+                                    <color key="titleColor" red="0.71127717391304346" green="0.067516317048232286" blue="0.13153811584342701" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A2t-Xg-Len"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -119,6 +130,17 @@
                                                         <action selector="editingChanged:" destination="Ydr-4g-HPW" eventType="editingDidEnd" id="sCE-dL-llh"/>
                                                     </connections>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOL-Bo-FcQ">
+                                                    <rect key="frame" x="287" y="6" width="25" height="30"/>
+                                                    <color key="backgroundColor" red="0.003129801580632966" green="0.0030694893266841319" blue="0.0032481317934782705" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="P!">
+                                                        <color key="titleColor" red="0.84801257859568113" green="0.83167111135745297" blue="0.88007387907608692" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="sendNotification:" destination="Ydr-4g-HPW" eventType="touchUpInside" id="QKc-Vr-1kh"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -141,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JO7-Nq-uNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1793" y="258"/>
+            <point key="canvasLocation" x="1793" y="257"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="BjK-oT-lR4">
