@@ -19,6 +19,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    NSLog(@"hi");
     [super viewDidAppear:YES];
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {//if we are already logged in at application open -weston
         [PFFacebookUtils initializeFacebook]; //this fixed user persistence, but might be gay
@@ -77,41 +78,6 @@
     //This was given by parse. How do we make this work? -Weston
 }
 
-- (IBAction)loginButtonTouchHandler:(id)sender  {//notusing this one
-    // Set permissions required from the facebook user account
-    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
-    
-    // Login PFUser using Facebook
-    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-       // Hide loading indicator
-        
-        if (!user) {
-            NSString *errorMessage = nil;
-            if (!error) {
-                NSLog(@"Uh oh. The user cancelled the Facebook login.");
-                errorMessage = @"Uh oh. The user cancelled the Facebook login.";
-            } else {
-                NSLog(@"Uh oh. An error occurred: %@", error);
-                errorMessage = [error localizedDescription];
-            }
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error"
-                                                            message:errorMessage
-                                                           delegate:nil
-                                                  cancelButtonTitle:nil
-                                                  otherButtonTitles:@"Dismiss", nil];
-            [alert show];
-        } else {
-            if (user.isNew) {
-                NSLog(@"User with facebook signed up and logged in!");
-            } else {
-                NSLog(@"User with facebook logged in!");
-            }
-            [self _presentUserDetailsViewControllerAnimated:YES];
-        }
-    }];
-    
- // Show loading indicator until login is finished
-}
 
 - (void)_presentUserDetailsViewControllerAnimated:(BOOL)animated {
     NSLog(@"SDFSJFKSFL");
@@ -143,7 +109,7 @@
     
 }
 - (void)openMainTabBarController{//opens main tab bar controller -Weston
-    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+   UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
         [self presentViewController:vc animated:YES completion:nil];
     
 }

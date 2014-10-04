@@ -14,7 +14,6 @@
 @interface FriendsViewController ()
 @property (strong, nonatomic) NSMutableArray *friendArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @end
 
 @implementation FriendsViewController
@@ -25,7 +24,7 @@
     // Do any additional setup after loading the view.
 }
 - (IBAction)cancelButtonHandler:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.view endEditing:YES];
 
 }
 

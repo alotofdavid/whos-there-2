@@ -52,6 +52,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    NSLog(@"in background");
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -82,13 +83,16 @@
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation setObject:[PFUser currentUser].objectId forKey:@"owner"];
+    if([PFUser currentUser])[currentInstallation setObject:[PFUser currentUser].objectId forKey:@"owner"];
     currentInstallation.channels = @[ @"global" ];
     [currentInstallation saveInBackground];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
+}
+-(void)test{
+    NSLog(@"Dela");
 }
 
 @end

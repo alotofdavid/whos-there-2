@@ -273,6 +273,11 @@
 					6FA3D0AB19DFD55E0095E844 = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = PQK7MDT9QM;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					6FA3D0C419DFD55F0095E844 = {
 						CreatedOnToolsVersion = 6.0.1;
