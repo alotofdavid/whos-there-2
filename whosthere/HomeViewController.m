@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    NSLog(@"Hello World");
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     if([def objectForKey:@"message"] == nil){
         [def setObject:self.defaultMessage.text forKey:@"message"];
@@ -111,7 +111,9 @@
 -(void)reportNumKnocks{
     if(self.knockCounter > 1){
         NSLog(@"Registered %d Knocks",self.knockCounter);
-        
+        for(int i = 0; i < self.knockCounter; i++) {
+            [self vibratePhone];
+        }
         NSArray *userIds = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeysForObject:[NSNumber numberWithInt: self.knockCounter]];
         for( NSString *userId in userIds){
             [self sendNotificationToUserWithObjectId:userId];
@@ -144,6 +146,10 @@
     
     [recentKnock saveInBackground];
     
+}
+
+-(void)vibratePhone{
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 }
 
 

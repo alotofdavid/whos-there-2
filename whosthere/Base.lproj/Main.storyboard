@@ -318,14 +318,6 @@
             <point key="canvasLocation" x="194" y="629"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="0bn-np-QcU">
-            <objects>
-                <viewController id="i2P-iL-c12" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gBr-ab-Z6y"/>
-                        <viewControllerLayoutGuide type="bottom" id="AUz-1w-CKi"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="H3C-Y0-Veg">
         <scene sceneID="Oa2-f9-I50">
             <objects>
                 <viewController id="kWU-B2-Tz9" sceneMemberID="viewController">
@@ -340,8 +332,6 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KGz-WI-Id6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xaF-md-wOv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="39" y="-821"/>
         </scene>
