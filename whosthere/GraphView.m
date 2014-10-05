@@ -12,6 +12,7 @@
 #define _AXIS_ORIGIN_Y 145
 #define _AXIS_LENGTH_X 460
 #define _AXIS_LENGTH_Y -135
+#define _AXIS_SCALE_X 6
 
 
 @implementation GraphView
@@ -82,7 +83,7 @@
     for (int i=1; i<[currentV.plots count]; i++) {
         if ((25+2*i) < _AXIS_LENGTH_X) {
             CMAccelerometerData *a = [currentV.plots objectAtIndex:i];
-            CGContextAddLineToPoint(c, _AXIS_ORIGIN_X+2*i, _AXIS_ORIGIN_Y - (80*a.acceleration.x));
+            CGContextAddLineToPoint(c, _AXIS_ORIGIN_X+_AXIS_SCALE_X*i, _AXIS_ORIGIN_Y - (80*a.acceleration.x));
         }
     }
     CGContextStrokePath(c);
@@ -96,7 +97,7 @@
     for (int i=1; i<[currentV.plots count]; i++) {
         if ((25+2*i) < _AXIS_LENGTH_X) {
             CMAccelerometerData *a = [currentV.plots objectAtIndex:i];
-            CGContextAddLineToPoint(c, _AXIS_ORIGIN_X+2*i, _AXIS_ORIGIN_Y - (80*a.acceleration.y));
+            CGContextAddLineToPoint(c, _AXIS_ORIGIN_X+_AXIS_SCALE_X*i, _AXIS_ORIGIN_Y - (80*a.acceleration.y));
         }
     }
     CGContextStrokePath(c);
@@ -110,12 +111,12 @@
     for (int i=1; i<[currentV.plots count]; i++) {
         if ((25+2*i) < _AXIS_LENGTH_X) {
             CMAccelerometerData *a = [currentV.plots objectAtIndex:i];
-            CGContextAddLineToPoint(c, _AXIS_ORIGIN_X+2*i, _AXIS_ORIGIN_Y - (80*a.acceleration.z));
+            CGContextAddLineToPoint(c, _AXIS_ORIGIN_X+_AXIS_SCALE_X*i, _AXIS_ORIGIN_Y - (80*a.acceleration.z));
         }
     }
     CGContextStrokePath(c);
     
-    BOOL drawTotalAcceleration = YES;
+    BOOL drawTotalAcceleration = NO;
     if(drawTotalAcceleration){
         //totals
         CGContextBeginPath(c);
@@ -131,7 +132,7 @@
                 double oldLowPass = lowPassResults;
                 peakPowerForChannel = peakPowerForChannel * 50;
                 lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * oldLowPass;
-                CGContextAddLineToPoint(c, 25+2*i, _AXIS_ORIGIN_Y - (80*j.integerValue));
+                CGContextAddLineToPoint(c, 25+_AXIS_SCALE_X*i, _AXIS_ORIGIN_Y - (80*j.integerValue));
                 //                CGContextAddLineToPoint(c, _AXIS_ORIGIN_X+2*i, _AXIS_ORIGIN_Y-_AXIS_LENGTH_Y - lowPassResults);
             }
         }
