@@ -111,14 +111,28 @@
 -(void)reportNumKnocks{
     if(self.knockCounter > 1){
         NSLog(@"Registered %d Knocks",self.knockCounter);
-        for(int i = 0; i < self.knockCounter; i++) {
-            [self vibratePhone];
-        }
         NSArray *userIds = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeysForObject:[NSNumber numberWithInt: self.knockCounter]];
+        NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+        if([userIds count] > 0 ){
+            NSLog(@"%hhd",[def boolForKey:@"vibrationSettings"]);
+            if([def boolForKey:@"vibrationSettings"]){
+                for(int i = 0; i < self.knockCounter; i++) {
+                    [self performSelector:@selector(vibratePhone) withObject:nil afterDelay:i/1.75];
+                }
+            }
+            if([[UIApplication sharedApplication]applicationState] == UIApplicationStateActive){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You sent a knock!"
+                                                                message:[NSString stringWithFormat:@"You knocked %d times",self.knockCounter ]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+
+        }
         for( NSString *userId in userIds){
             [self sendNotificationToUserWithObjectId:userId];
-        }
-    }
+        }}
     self.knockCounter = 0;
 }
 

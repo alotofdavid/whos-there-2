@@ -22,7 +22,9 @@
     [super viewDidLoad];
     [self queryFacebookFriends];
     // Do any additional setup after loading the view.
+  
 }
+
 - (IBAction)cancelButtonHandler:(id)sender {
     [self.view endEditing:YES];
 

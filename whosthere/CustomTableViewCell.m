@@ -25,5 +25,11 @@
     [def setInteger:[self.numberField.text integerValue] forKey: self.idForCell];
     [def synchronize];
 }
+- (BOOL)textFieldShouldReturn:(UITextField *)aTextField
+{
+    [self.numberField resignFirstResponder];
+    return YES;
+}
+
 
 @end

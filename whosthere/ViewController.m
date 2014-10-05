@@ -23,6 +23,7 @@
 @property BOOL readyToListen;
 @property int knockCounter;
 @property int varyingDelay;
+@property (weak, nonatomic) IBOutlet UISwitch *feedbackSwitch;
 
 @property BOOL graphOn;
 
@@ -30,6 +31,19 @@
 
 @implementation ViewController
 @synthesize plots, totals;
+
+- (IBAction)changeFeedback:(id)sender {
+    NSUserDefaults * def = [NSUserDefaults standardUserDefaults];
+    if([self.feedbackSwitch isOn]){
+        [def setBool:YES forKey:@"vibrationSettings"];
+        NSLog(@"yes");
+    }else{
+        [def setBool:NO forKey:@"vibrationSettings"];
+        NSLog(@"no");
+    }
+    [def synchronize];
+   
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,6 +70,12 @@
         
         });
     }];
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    if([def boolForKey:@"vibrationSettings"]){
+        self.feedbackSwitch.on = YES;
+    }else{
+        self.feedbackSwitch.on = NO;
+    }
     
 }
 - (void)didReceiveMemoryWarning {

@@ -11,8 +11,11 @@
 
 
 @interface NotificationViewController ()
-@property NSMutableArray *notificationArray;
+@property NSMutableArray *recievedNotificationArray;
+@property NSMutableArray *sentNotificationArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;
+
 @end
 
 @implementation NotificationViewController
@@ -36,19 +39,29 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    NSUInteger count = [self.notificationArray count];
+    PFObject *obj;
+    if(self.segControl.selectedSegmentIndex == 0){
+        NSUInteger count = [self.recievedNotificationArray count];
     
-    PFObject *obj = [self.notificationArray objectAtIndex:(count-indexPath.row-1)];
+        obj = [self.recievedNotificationArray objectAtIndex:(count-indexPath.row-1)];
+    }else{
+        NSUInteger count = [self.sentNotificationArray count];
+            
+        obj = [self.sentNotificationArray objectAtIndex:(count-indexPath.row-1)];
+    }
     NSString *cellText = obj[@"message"];
     cell.textLabel.text = cellText;
     NSString *date = obj[@"sentTime"];
     cell.detailTextLabel.text = date;
-    
     return cell;
 }
 - (NSInteger) tableView: (UITableView*) tableView numberOfRowsInSection: (NSInteger) section
 {
-    return [self.notificationArray count];
+    if (self.segControl.selectedSegmentIndex == 0){
+        return [self.recievedNotificationArray count];
+    }else{
+        return [self.sentNotificationArray count];
+    }
 }
 -(void)queryData{
     
@@ -56,9 +69,18 @@
     [query whereKey:@"recipientId" equalTo:[[PFUser currentUser] objectId]];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *notifications, NSError *error) {
-        self.notificationArray = [notifications mutableCopy];
+        self.recievedNotificationArray = [notifications mutableCopy];
         [self.tableView reloadData];
     }];
+    
+    PFQuery *query2 = [PFQuery queryWithClassName: @"History"];
+    [query2 whereKey:@"senderId" equalTo:[[PFUser currentUser] objectId]];
+    
+    [query2 findObjectsInBackgroundWithBlock:^(NSArray *notifications, NSError *error) {
+        self.sentNotificationArray = [notifications mutableCopy];
+        [self.tableView reloadData];
+    }];
+
 }
 /*
 #pragma mark - Navigation
@@ -71,6 +93,9 @@
 */
 - (IBAction)refreshData:(id)sender {
     [self queryData];
+}
+- (IBAction)changeSegControl:(id)sender {
+    [self.tableView reloadData];
 }
 
 @end
