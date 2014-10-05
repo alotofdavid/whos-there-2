@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5qS-1M-wfH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5qS-1M-wfH">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
@@ -105,16 +105,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IDZ-07-4pr" customClass="GraphView">
-
-                                <rect key="frame" x="0.0" y="165" width="320" height="324"/>
-                                <color key="backgroundColor" red="0.46451400679999999" green="0.73409598210000004" blue="0.66503023139999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <rect key="frame" x="0.0" y="215" width="320" height="304"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="currentV" destination="BYZ-38-t0r" id="ORV-LO-FQ2"/>
-                                </connections>
-                            </view>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GFO-5w-rOm">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.46451400679999999" green="0.73409598210000004" blue="0.66503023139999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -123,7 +113,7 @@
                                 </items>
                             </navigationBar>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ic2-JX-Epl">
-                                <rect key="frame" x="165" y="143" width="52" height="31"/>
+                                <rect key="frame" x="165" y="143" width="51" height="31"/>
                                 <connections>
                                     <action selector="graphSwitched:" destination="BYZ-38-t0r" eventType="valueChanged" id="L6u-aW-1bv"/>
                                 </connections>
@@ -134,6 +124,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IDZ-07-4pr" customClass="GraphView">
+                                <rect key="frame" x="0.0" y="231" width="320" height="288"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="currentV" destination="BYZ-38-t0r" id="ORV-LO-FQ2"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -326,14 +323,6 @@
                         <viewControllerLayoutGuide type="bottom" id="AUz-1w-CKi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="H3C-Y0-Veg">
-        <scene sceneID="Oa2-f9-I50">
-            <objects>
-                <viewController id="kWU-B2-Tz9" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="E7v-T6-PtR"/>
-                        <viewControllerLayoutGuide type="bottom" id="SzF-uw-KRA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Vhd-wD-0QG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -341,9 +330,6 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KGz-WI-Id6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xaF-md-wOv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="39" y="-821"/>
         </scene>
     </scenes>
     <resources>
