@@ -29,6 +29,7 @@
 }
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
+    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     static NSString *CellIdentifier = @"NewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     

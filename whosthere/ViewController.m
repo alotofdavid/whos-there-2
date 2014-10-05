@@ -98,7 +98,7 @@
         if([userIds count] > 0){
             NSLog(@"Registered %d Knocks",self.knockCounter);
             for( NSString *userId in userIds){
-                [self sendNotificationToUserWithObjectId:userId];
+//                [self sendNotificationToUserWithObjectId:userId];
             }
             for(int i = 0 ; i < self.knockCounter; i++){
                 [self performSelector:@selector(vibratePhone) withObject:nil afterDelay:i/1.75];
