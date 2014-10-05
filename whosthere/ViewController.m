@@ -13,19 +13,19 @@
 // 50 is good spot
 //we need to use 5 because when the app is in teh background, ios delegates less resources to the app.
 #define DATA_SIZE 5
+#define GRAPH_SIZE 50
 #define SAMPLE_DELAY 0.1
 #define KNOCK_DETECT_SENSITIVITY 0.65
 //higher sensitivity is less sensitive
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 @property (weak, nonatomic) IBOutlet GraphView *graphV;
 @property BOOL readyToListen;
 @property int knockCounter;
 @property int varyingDelay;
 
-@property (strong, nonatomic) IBOutlet UITextField *defaultMessage;
+@property BOOL graphOn;
 
 @end
 
@@ -34,6 +34,8 @@
 int y= 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.graphOn = NO;
+    
     self.readyToListen = YES;
     self.knockCounter = 0;
     self.varyingDelay = 1;
@@ -42,28 +44,22 @@ int y= 0;
                          [NSNumber numberWithFloat:4.7],
                          [NSNumber numberWithFloat:6.6],
                          [NSNumber numberWithFloat:6.9],nil];
-
-    /*NSMutableArray *testSignal = [[NSMutableArray alloc] init];
-    for (float i=0; i<10; i++) {
-        NSNumber* num = [[NSNumber alloc] initWithFloat:testValues[i]];
-        [testSignal addObject:num];
-    }*/
+    
     NSLog(@"%d",[self detectKnock:[testSignal objectAtIndex:0]:[testSignal objectAtIndex:1]:[testSignal objectAtIndex:2]]);
-    // Do any additional setup after loading the view.
+    
     self.motionManager = [[CMMotionManager alloc] init];
     self.motionManager.accelerometerUpdateInterval = .01;
     //self.motionManager.gyroUpdateInterval = .01;
     
-   // self.plots = [NSMutableArray arrayWithCapacity:DATA_SIZE];
-    //self.totals = [NSMutableArray arrayWithCapacity:DATA_SIZE];
+    self.plots = [NSMutableArray arrayWithCapacity:GRAPH_SIZE];
+    self.totals = [NSMutableArray arrayWithCapacity:GRAPH_SIZE];
     self.zvals = [NSMutableArray arrayWithCapacity:DATA_SIZE];
     
     [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue]
                                              withHandler:^(CMAccelerometerData  *accelerometerData, NSError *error){ dispatch_async(dispatch_get_main_queue(), ^{
                                                  [self outputAccelertionData:accelerometerData];
         if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive)
-        //NSLog(@"%i\n", ++y);
-                                                 if(error){
+                                                if(error){
                                                      
                                                      NSLog(@"%@", error);
                                                  }
@@ -71,13 +67,6 @@ int y= 0;
         });
     }];
     
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    if([def objectForKey:@"message"] == nil){
-        [def setObject:self.defaultMessage.text forKey:@"message"];
-    }
-    self.defaultMessage.text = [def objectForKey:@"message"];
-    
-    self.doneButton.enabled = NO;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -86,8 +75,6 @@ int y= 0;
 
 
 - (BOOL)detectKnock:(NSNumber*)first:(NSNumber*)second:(NSNumber*)third {
-    int down_edge = -100;
-    int duration = 1;
     //float slope = .18;
     float slope = KNOCK_DETECT_SENSITIVITY;
     if ([first floatValue] - [second floatValue] > slope) {
@@ -100,17 +87,6 @@ int y= 0;
             return true;
         }
     }
-
-   /* for (int i=0; i<[signal count]-1; i++) {
-        NSLog(@"checking i = %d", i);
-        if (([[signal objectAtIndex:i] floatValue] - [[signal objectAtIndex:i+1] floatValue]) > slope) {
-            down_edge = i;
-        } else if (((NSInteger)[signal objectAtIndex:i+1] - (NSInteger)[signal objectAtIndex:i]) > slope) {
-            if (down_edge >= i - duration) {
-                return true;
-            }
-        }
-    }*/
     return false;
 }
 int x;
@@ -124,21 +100,23 @@ int x;
     [[self view] setNeedsDisplay];
     [self.graphV setNeedsDisplay];
     
-    //NSLog(@"%lu", (unsigned long)[self.plots count]);
-   // if([self.plots count] >= DATA_SIZE){
-    //    [self.plots removeObjectAtIndex:DATA_SIZE-1];
-    //}
-    //if([self.totals count] >= DATA_SIZE){
-     //   [self.totals removeObjectAtIndex:DATA_SIZE-1];
-    //}
+    if(self.graphOn == YES){
+        if([self.plots count] >= GRAPH_SIZE){
+            [self.plots removeObjectAtIndex:GRAPH_SIZE-1];
+        }
+        if([self.totals count] >= GRAPH_SIZE){
+            [self.totals removeObjectAtIndex:GRAPH_SIZE-1];
+        }
+        [self.plots insertObject:accelerometerData atIndex:0];
+        NSNumber *n = [NSNumber numberWithDouble:(fabs(acceleration.x)+fabs(acceleration.y)+fabs(acceleration.z))];
+        [self.totals insertObject:n atIndex:0];
+    }
+
     if([self.zvals count] >= DATA_SIZE){
         [self.zvals removeObjectAtIndex:DATA_SIZE-1];
     }
-    //[self.plots insertObject:accelerometerData atIndex:0];
     [self.zvals insertObject:[[NSNumber alloc] initWithFloat:acceleration.z] atIndex:0];
-    NSNumber *n = [NSNumber numberWithDouble:(fabs(acceleration.x)+fabs(acceleration.y)+fabs(acceleration.z))];
     
-    //[self.totals insertObject:n atIndex:0];
     if ([self.zvals count] > 2) {
         if([self detectKnock:[self.zvals objectAtIndex:0]:[self.zvals objectAtIndex:1]:[self.zvals objectAtIndex:2]]) {
             self.knockLabel.text = @"KNOCK!";
@@ -209,23 +187,12 @@ int x;
     [recentKnock saveInBackground];
    
 }
-
-- (IBAction)editMessage:(id)sender {
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    NSString *message = self.defaultMessage.text;
-    [def setObject:message forKey:@"message"];
-    [def synchronize];
-    
-}
-
-- (IBAction)editingBegin:(id)sender {
-    self.doneButton.enabled = YES;
-}
-
-
-- (IBAction)doneButtonPressed:(id)sender {
-    self.doneButton.enabled = NO;
-    [self.view endEditing:YES];
+- (IBAction)graphSwitched:(id)sender {
+    if ([sender isOn]) {
+        self.graphOn = YES;
+    }else {
+        self.graphOn = NO;
+    }
 }
 
 @end

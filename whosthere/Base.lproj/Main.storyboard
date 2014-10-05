@@ -50,7 +50,13 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VPU-5x-4jF">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <items>
-                                    <navigationItem title="Recent Notifications" id="k2V-LG-LOd"/>
+                                    <navigationItem title="Recent Notifications" id="k2V-LG-LOd">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="ITB-r4-Jw1">
+                                            <connections>
+                                                <action selector="refreshData:" destination="bfb-l7-Uly" id="Cmr-0g-t1T"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -76,14 +82,15 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="MYJ-vL-4fB"/>
+                        <segue destination="hbG-5e-y34" kind="relationship" relationship="viewControllers" id="vnJ-26-xBn"/>
                         <segue destination="gAO-pc-ekc" kind="relationship" relationship="viewControllers" id="pO6-Fm-NzJ"/>
                         <segue destination="bfb-l7-Uly" kind="relationship" relationship="viewControllers" id="K5R-YY-af8"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="MYJ-vL-4fB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EaS-k9-UEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="288" y="-64"/>
+            <point key="canvasLocation" x="206" y="-74"/>
         </scene>
         <!--Graph-->
         <scene sceneID="tne-QT-ifu">
@@ -98,7 +105,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IDZ-07-4pr" customClass="GraphView">
-                                <rect key="frame" x="0.0" y="247" width="320" height="321"/>
+                                <rect key="frame" x="0.0" y="165" width="320" height="324"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="currentV" destination="BYZ-38-t0r" id="ORV-LO-FQ2"/>
@@ -107,26 +114,17 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GFO-5w-rOm">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <items>
-                                    <navigationItem title="Graph / Activity" id="qrO-Mz-zMt">
-                                        <barButtonItem key="leftBarButtonItem" title="Done" id="7Z9-j2-WZc">
-                                            <connections>
-                                                <action selector="doneButtonPressed:" destination="BYZ-38-t0r" id="yFi-Qa-Zhk"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Graph / Activity" id="qrO-Mz-zMt"/>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Knock Knock" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="c1Y-ao-vf3">
-                                <rect key="frame" x="94" y="95" width="210" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ic2-JX-Epl">
+                                <rect key="frame" x="164" y="92" width="51" height="31"/>
                                 <connections>
-                                    <action selector="editMessage:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="e4n-aA-OmX"/>
-                                    <action selector="editingBegin:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="6Ub-bo-lFn"/>
+                                    <action selector="graphSwitched:" destination="BYZ-38-t0r" eventType="valueChanged" id="L6u-aW-1bv"/>
                                 </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOF-yd-van">
-                                <rect key="frame" x="16" y="99" width="70" height="21"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Graph Enabled" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYS-xI-hjT">
+                                <rect key="frame" x="15" y="97" width="115" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -137,14 +135,64 @@
                     <tabBarItem key="tabBarItem" title="Graph" id="rEc-Dh-DHT"/>
                     <navigationItem key="navigationItem" id="6zA-nJ-atH"/>
                     <connections>
-                        <outlet property="defaultMessage" destination="c1Y-ao-vf3" id="TGj-oB-pTo"/>
-                        <outlet property="doneButton" destination="7Z9-j2-WZc" id="kQU-e0-ubt"/>
                         <outlet property="graphV" destination="IDZ-07-4pr" id="nN8-MY-f9c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1240" y="-388"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="Dfv-Ta-lGI">
+            <objects>
+                <viewController id="hbG-5e-y34" customClass="HomeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UFF-at-VQb"/>
+                        <viewControllerLayoutGuide type="bottom" id="kc5-DG-jGB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pE4-DS-6mM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEb-ak-Ygs">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Home" id="9bV-0J-48w">
+                                        <barButtonItem key="leftBarButtonItem" title="Done" id="k3n-vg-3DN">
+                                            <connections>
+                                                <action selector="doneButtonPressed:" destination="hbG-5e-y34" id="XGp-CX-GRy"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Knock Knock" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="baQ-7s-tlE">
+                                <rect key="frame" x="94" y="108" width="210" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editMessage:" destination="hbG-5e-y34" eventType="editingDidEnd" id="bQ2-HZ-gCa"/>
+                                    <action selector="editingBegin:" destination="hbG-5e-y34" eventType="editingDidBegin" id="5m8-dC-Rxg"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krX-kD-ZDi">
+                                <rect key="frame" x="16" y="112" width="70" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" id="svp-4K-VaL"/>
+                    <connections>
+                        <outlet property="defaultMessage" destination="baQ-7s-tlE" id="G6N-yW-uhw"/>
+                        <outlet property="doneButton" destination="k3n-vg-3DN" id="Tvi-4k-e1o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OOh-3F-1r8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="317" y="-991"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="ZEm-YR-u6d">
@@ -251,23 +299,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rLd-Lw-043" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="194" y="629"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Oa2-f9-I50">
-            <objects>
-                <viewController id="kWU-B2-Tz9" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="E7v-T6-PtR"/>
-                        <viewControllerLayoutGuide type="bottom" id="SzF-uw-KRA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Vhd-wD-0QG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xaF-md-wOv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

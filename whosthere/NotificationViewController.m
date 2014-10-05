@@ -35,12 +35,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    NSUInteger count = [self.notificationArray count];
     
-    if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    PFObject *obj = [self.notificationArray objectAtIndex:indexPath.row];
+    PFObject *obj = [self.notificationArray objectAtIndex:(count-indexPath.row-1)];
     NSString *cellText = obj[@"message"];
     cell.textLabel.text = cellText;
     NSString *date = obj[@"sentTime"];
@@ -71,5 +68,8 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)refreshData:(id)sender {
+    [self queryData];
+}
 
 @end
