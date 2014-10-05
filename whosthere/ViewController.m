@@ -145,22 +145,26 @@ int x;
 -(void)reportNumKnocks{
     if(self.knockCounter > 1){
         NSLog(@"Registered %d Knocks",self.knockCounter);
-        
-        
         PFObject *knock = [PFObject objectWithClassName:@"KNOCK"];
         knock[@"count"] = [NSNumber numberWithInt:self.knockCounter];
         [knock saveInBackground];
-        
         NSArray *userIds = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeysForObject:[NSNumber numberWithInt: self.knockCounter]];
-        for( NSString *userId in userIds){
-            [self sendNotificationToUserWithObjectId:userId];
+        if([userIds count] > 0){
+            NSLog(@"Registered %d Knocks",self.knockCounter);
+            for( NSString *userId in userIds){
+                [self sendNotificationToUserWithObjectId:userId];
+            }
+            for(int i = 0 ; i < self.knockCounter; i++){
+                [self performSelector:@selector(vibratePhone) withObject:nil afterDelay:i/1.75];
+            }
         }
-        //NSString *sendId = [NSUserDefaults standardUserDefaults][@"object]
     }
     self.knockCounter = 0;
 
 }
-
+-(void)vibratePhone{
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+}
 
 -(void)sendNotificationToUserWithObjectId:(NSString *)objId{
     PFQuery *pushQuery = [PFInstallation query];
