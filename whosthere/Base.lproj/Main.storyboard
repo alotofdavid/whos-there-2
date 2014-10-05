@@ -49,6 +49,7 @@
                             </tableView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VPU-5x-4jF">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <color key="barTintColor" red="0.46451400679999999" green="0.73409598210000004" blue="0.66503023139999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Recent Notifications" id="k2V-LG-LOd">
                                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="ITB-r4-Jw1">
@@ -105,6 +106,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IDZ-07-4pr" customClass="GraphView">
+
+                                <rect key="frame" x="0.0" y="165" width="320" height="324"/>
+                                <color key="backgroundColor" red="0.46451400679999999" green="0.73409598210000004" blue="0.66503023139999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <rect key="frame" x="0.0" y="215" width="320" height="304"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -113,6 +117,7 @@
                             </view>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GFO-5w-rOm">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <color key="barTintColor" red="0.46451400679999999" green="0.73409598210000004" blue="0.66503023139999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Graph / Activity" id="qrO-Mz-zMt"/>
                                 </items>
@@ -132,7 +137,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Graph" id="rEc-Dh-DHT"/>
+                    <tabBarItem key="tabBarItem" title="Graph" image="increasing5" id="rEc-Dh-DHT"/>
                     <navigationItem key="navigationItem" id="6zA-nJ-atH"/>
                     <connections>
                         <outlet property="graphV" destination="IDZ-07-4pr" id="nN8-MY-f9c"/>
@@ -154,8 +159,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GoldenGate" translatesAutoresizingMaskIntoConstraints="NO" id="9nn-y7-nBY">
+                                <rect key="frame" x="-149" y="64" width="837" height="455"/>
+                            </imageView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEb-ak-Ygs">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <color key="barTintColor" red="0.46451400679761545" green="0.73409598214285721" blue="0.6650302313850065" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Home" id="9bV-0J-48w">
                                         <barButtonItem key="leftBarButtonItem" title="Done" id="k3n-vg-3DN">
@@ -166,25 +175,25 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Knock Knock" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="baQ-7s-tlE">
-                                <rect key="frame" x="94" y="108" width="210" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Knock Knock" borderStyle="bezel" placeholder="Message" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="baQ-7s-tlE">
+                                <rect key="frame" x="16" y="83" width="288" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="editMessage:" destination="hbG-5e-y34" eventType="editingDidEnd" id="bQ2-HZ-gCa"/>
                                     <action selector="editingBegin:" destination="hbG-5e-y34" eventType="editingDidBegin" id="5m8-dC-Rxg"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krX-kD-ZDi">
-                                <rect key="frame" x="16" y="112" width="70" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose your message to send to your friends" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKm-FS-AgT">
+                                <rect key="frame" x="22" y="106" width="105" height="100"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="svp-4K-VaL"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="HOme" id="svp-4K-VaL"/>
                     <connections>
                         <outlet property="defaultMessage" destination="baQ-7s-tlE" id="G6N-yW-uhw"/>
                         <outlet property="doneButton" destination="k3n-vg-3DN" id="Tvi-4k-e1o"/>
@@ -194,7 +203,7 @@
             </objects>
             <point key="canvasLocation" x="317" y="-991"/>
         </scene>
-        <!--Friends View Controller-->
+        <!--Contacts-->
         <scene sceneID="ZEm-YR-u6d">
             <objects>
                 <viewController id="gAO-pc-ekc" customClass="FriendsViewController" sceneMemberID="viewController">
@@ -208,6 +217,7 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p0L-z7-4zg">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <color key="barTintColor" red="0.46451400679999999" green="0.73409598210000004" blue="0.66503023139999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Contacts" id="8ny-LS-5rZ">
                                         <barButtonItem key="leftBarButtonItem" title="Done" id="LLp-L4-Xux">
@@ -218,9 +228,10 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2jc-xb-PRc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2jc-xb-PRc">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.46451400679999999" green="0.73409598210000004" blue="0.66503023139999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="45" id="Ydr-4g-HPW" customClass="CustomTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -228,14 +239,20 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="Cell" tableViewCell="Ydr-4g-HPW" id="818-vh-OYH">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AVV-4b-WLT">
-                                                    <rect key="frame" x="234" y="8" width="78" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AVV-4b-WLT">
+                                                    <rect key="frame" x="234" y="8" width="36" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <connections>
                                                         <action selector="editingChanged:" destination="Ydr-4g-HPW" eventType="editingDidEnd" id="sCE-dL-llh"/>
                                                     </connections>
                                                 </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Knocks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mR9-he-zzf">
+                                                    <rect key="frame" x="274" y="12" width="58" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -251,7 +268,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="vBa-Ef-VZw"/>
+                    <tabBarItem key="tabBarItem" title="Contacts" image="business139" id="vBa-Ef-VZw"/>
                     <navigationItem key="navigationItem" id="ec8-PL-H5l"/>
                     <connections>
                         <outlet property="tableView" destination="2jc-xb-PRc" id="GXH-rJ-AeK"/>
@@ -301,6 +318,14 @@
             <point key="canvasLocation" x="194" y="629"/>
         </scene>
         <!--View Controller-->
+        <scene sceneID="0bn-np-QcU">
+            <objects>
+                <viewController id="i2P-iL-c12" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gBr-ab-Z6y"/>
+                        <viewControllerLayoutGuide type="bottom" id="AUz-1w-CKi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="H3C-Y0-Veg">
         <scene sceneID="Oa2-f9-I50">
             <objects>
                 <viewController id="kWU-B2-Tz9" sceneMemberID="viewController">
@@ -314,11 +339,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KGz-WI-Id6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xaF-md-wOv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="39" y="-821"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="GoldenGate" width="1080" height="718"/>
+        <image name="HOme" width="30" height="30"/>
+        <image name="business139" width="30" height="30"/>
+        <image name="increasing5" width="30" height="30"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
