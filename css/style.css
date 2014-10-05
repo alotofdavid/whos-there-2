@@ -60,7 +60,7 @@ html, body {
 }
 
 .header{
-    background: url(../imgs/header.jpg) no-repeat center center fixed;
+    background: url(../imgs/mountains.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -132,6 +132,19 @@ h3{
     line-height: 2em;
     font-size: 16px;    
 }
+
+.knock-detection{
+    background: url(../samplePics/graph1.jpg) no-repeat center;
+}
+
+.knock-detection p{
+    right: 15px !important;    
+}
+
+.soft h2, .soft p{
+    background-color: rgba(255,255,255,.6);
+    padding: 14px !important;
+} 
 
 .footer{
     background-color: #403c3c;

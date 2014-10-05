@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
 
-    <title>Who's There? | The Knocking Notification App</title>
+    <title>Who's There | The Knocking Notification App</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="/favicon.ico" rel="short icon" type="image/x-icon">
@@ -18,25 +18,51 @@
 </div>
 
     <div class="fullscreen background header section current">
-        <h1>Who's There?</h1>
+        <h1>Who's There</h1>
 
         <h6>Just a knock away from a notification.</h6>
     </div>
 
     <div class="fullscreen row content1 section">
-        <div class="col-xs-12">
-            <h2>About <span class="us">Who's There?</span></h2>
+        <div class="col-xs-12 col-sm-6">
+            <img src="samplePics/home.png" height="600"/>
+        </div>
 
-            <p>Our app aims to notify people via text, email or a simple notification without even taking your phone out of your pocket. With the ease of <span class="us">Who's There?</span> you can send notifications to your friends by simply knocking on your phone.</p>
+        <div class="col-xs-12 col-sm-6">
+            <h2>About <span class="us">Who's There</span></h2>
+            <p>
+            Knock, Knock, I'm here. With <span class="us">Who's There</span>, you can send hassle free notifications to your friends with a rap of your knuckles. (Without even taking your phone out of your pocket!)
+            <br> <br>
+            We leveraged the iPhone's accelerometer in tandem with the Parse/Facebook API to convert sequences of 'knock' impulses into live notifications sent to your Facebook friends.
+            <br> <br>
+            With <span class="us">Who's There</span>, you can even customize your Knock message and set different Knock counts for different friends.
+            </p>
         </div>
     </div>
 
     <div class="fullscreen row content2 section">
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-sm-6">
             <h2>Our Vision<br>
             <br></h2>
 
-            <p>This app was developed during a cross-college hackathon at UC Berkley - Cal Hacks. The four developers Myles Scolnick, David Adams, Weston Mizumoto, Dennis Fang worked for many hours straight building a simple solution to sending notifications without taking your phone out of your pocket.</p>
+            <p>This app was developed during a cross-college hackathon at UC Berkley - Cal Hacks. The four developers Myles Scolnick, David Adams, Weston Mizumoto, Dennis Fang worked together to build a simple solution to sending notifications without taking your phone out of your pocket.</p>
+            <br>
+            <br>
+            <p>
+                We see <span class="us">Who's There</span> there to be used in many cases and believe the applications potential is astounding. For example, driver pickup - we used to let someone know we were there by knocking on their door. Now you can knock on your phone instead, eliminating the danger of texting while driving. Accessibility - the ability to send notifications without any thoughtful interaction with the phone could be useful for individuals with disabilities, signaling for assistance by simply knocking on the surface of their phone. What's limiting this app to sending notifications? The knock detection scheme could be used to trigger any events such as turning on and off light switches.
+            </p>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <img src="samplePics/contacts.png" height="600" />
+        </div>
+    </div>
+
+
+    <div class="fullscreen background row content1 section knock-detection">
+        <div class="col-sm-offset-6 col-sm-5 soft">
+            <h2>Knock Detection Technology</h2>
+
+            <p>We sampled the accelerometer data to determine what registered when knocking on the phone. We recorded a bunch of sample signals, some including knocks and some containing just noise. We used Python to develop an algorithm based on a high-pass filter that would reject low frequency noise. We ran very rudimentary machine learning routines to determine the optimal threshold values for our filter and then ported to Objective-C!</p>
         </div>
     </div>
 
@@ -47,14 +73,14 @@
 
             <h3>Fast</h3>
 
-            <h5>With <span class="us">Who's There?</span> you can send notifications instantly without opening your phone.</h5>
+            <h5>With <span class="us">Who's There</span> you can send notifications instantly without opening your phone.</h5>
         </div>
         
         <div class="col-xs-12 col-sm-4">
             <span class="feat glyphicon glyphicon-user"><br>
             <h3>Friendly</h3>
 
-            <h5><span class="us">Who's There?</span> allows you to connect to all your friends via Facebook to send knocks to everyone.</h5>
+            <h5><span class="us">Who's There</span> allows you to connect to Facebook to send Knocks to all your friends.</h5>
         </div>
 
         <div class="col-xs-12 col-sm-4">
@@ -62,7 +88,7 @@
 
             <h3>Customizable</h3>
 
-            <h5>You can select any number of people to be sent a notification for any number of seqential knocks.</h5>
+            <h5>You can select any number of people to be sent a notification for any number of sequential knocks.</h5>
         </div>
     </div>
 
@@ -88,7 +114,7 @@
 
     <div class="footer">
         <div class="container">
-            <em>Copyright © 2014 <span class="us">Who's There?</span></em>
+            <em>Copyright © 2014 <span class="us">Who's There</span></em>
         </div>
     </div>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
