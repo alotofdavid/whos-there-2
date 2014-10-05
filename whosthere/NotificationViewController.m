@@ -67,18 +67,23 @@
     
     PFQuery *query = [PFQuery queryWithClassName: @"History"];
     [query whereKey:@"recipientId" equalTo:[[PFUser currentUser] objectId]];
-    
+    query.limit = 30;
     [query findObjectsInBackgroundWithBlock:^(NSArray *notifications, NSError *error) {
+        if (!error){
         self.recievedNotificationArray = [notifications mutableCopy];
         [self.tableView reloadData];
+        }
     }];
     
     PFQuery *query2 = [PFQuery queryWithClassName: @"History"];
     [query2 whereKey:@"senderId" equalTo:[[PFUser currentUser] objectId]];
+    query2.limit = 30;
     
     [query2 findObjectsInBackgroundWithBlock:^(NSArray *notifications, NSError *error) {
+        if (!error){
         self.sentNotificationArray = [notifications mutableCopy];
         [self.tableView reloadData];
+    }
     }];
 
 }
