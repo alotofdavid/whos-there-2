@@ -2,10 +2,7 @@ $('div.section').first();
 
 $('.display').on('click', function(e) {
     e.preventDefault();
-    console.log("hii");
-
       var t = this.id;
-      console.log(t);
       that = $(this);
 
     if (t === 'display' && $('.current').next('div.section').length > 0) {
@@ -19,7 +16,6 @@ $('.display').on('click', function(e) {
         }, function () {
                $next.addClass('current');
         });
-        console.log("hooo");
   } else if (t === 'display1' && $('.current').prev('div.section').length > 0) {
         var $prev = $('.current').prev('.section');
         var top = $prev.offset().top;
@@ -31,12 +27,8 @@ $('.display').on('click', function(e) {
         }, function () {
                $prev.addClass('current');
         });
-        console.log("hi");
-
   } 
 });
-
-console.log("heii");
 
 /* fix vertical when not overflow
 call fullscreenFix() if .fullscreen content changes */

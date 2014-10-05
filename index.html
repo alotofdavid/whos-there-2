@@ -13,107 +13,86 @@
 
 <body>
  <div class="navigation">
-    <a href="#" id="display" class="display">next</a><br>
-    <a href="#" id="display1" class="display">prev</a>
+    <span href="#" id="display1" class="display glyphicon glyphicon-chevron-up"></span><br>
+    <span href="#" id="display" class="display glyphicon glyphicon-chevron-down"></span>
 </div>
 
-    <div class="fullscreen background header section">
+    <div class="fullscreen background header section current">
         <h1>Who's There?</h1>
 
         <h6>Just a knock away from a notification.</h6>
     </div>
 
-    <div id="one" class="fullscreen row content1 section">
+    <div class="fullscreen row content1 section">
         <div class="col-xs-12">
-            <h2>About Who's There?</h2>
+            <h2>About <span class="us">Who's There?</span></h2>
 
-            <p>Content Stuff</p>
+            <p>Our app aims to notify people via text, email or a simple notification without even taking your phone out of your pocket. With the ease of <span class="us">Who's There?</span> you can send notifications to your friends by simply knocking on your phone.</p>
         </div>
     </div>
 
-    <div id="two" class="fullscreen row content2 section">
+    <div class="fullscreen row content2 section">
         <div class="col-xs-12">
             <h2>Our Vision<br>
             <br></h2>
 
-            <p>Content here</p>
+            <p>This app was developed during a cross-college hackathon at UC Berkley - Cal Hacks. The four developers Myles Scolnick, David Adams, Weston Mizumoto, Dennis Fang worked for many hours straight building a simple solution to sending notifications without taking your phone out of your pocket.</p>
         </div>
     </div>
 
-    <div id="three" class="fullscreen row content3 section">
-        <div class="col-xs-4"><img alt="" height="100" src="imgs/grid.svg" width="100"></div>
+    <div class="row content3 section">
+        
+        <div class="col-xs-12 col-sm-4">
+                        <span class="feat glyphicon glyphicon-flash"><br>
 
-        <div class="col-xs-4"><img alt="" height="100" src="imgs/time.svg" width="100"></div>
+            <h3>Fast</h3>
 
-        <div class="col-xs-4"><img alt="" height="100" src="imgs/heart.svg" width="100"></div>
+            <h5>With <span class="us">Who's There?</span> you can send notifications instantly without opening your phone.</h5>
+        </div>
+        
+        <div class="col-xs-12 col-sm-4">
+            <span class="feat glyphicon glyphicon-user"><br>
+            <h3>Friendly</h3>
 
-        <div class="col-xs-4">
-            <h2>Simple</h2>
-
-            <h5>Visually see all your options on-screen instead of listening to boring noise, and frusterating automated calls.</h5>
+            <h5><span class="us">Who's There?</span> allows you to connect to all your friends via Facebook to send knocks to everyone.</h5>
         </div>
 
-        <div class="col-xs-4">
-            <h2>Fast</h2>
+        <div class="col-xs-12 col-sm-4">
+                        <span class="feat glyphicon glyphicon-cog"><br>
 
-            <h5>Save time by quickly scanning and reacting to pick <i>your</i> option right away. Rather than listening to <i>every</i>
-            option..and remembering them.</h5>
-        </div>
+            <h3>Customizable</h3>
 
-        <div class="col-xs-4">
-            <h2>Amazing</h2>
-
-            <h5>Fall in love with the new and easy-to-use visual alternative to automated calls. Enjoy frustration-free calling experience
-            with Rotary.</h5>
-        </div>
-
-        <div class="col-xs-6"><img alt="" height="100" src="imgs/man.svg" width="100"></div>
-
-        <div class="col-xs-6"><img alt="" height="100" src="imgs/cloud.svg" width="100"></div>
-
-        <div class="col-xs-6">
-            <h2>Personal</h2>
-
-            <h5>Allow Rotary to save your favorites, recents, and contacts to get you to solve your problem even quicker. Also your account
-            will help companies see what previous problems you encountered to help solve your current problem.</h5>
-        </div>
-
-        <div class="col-xs-6">
-            <h2>All-in-one</h2>
-
-            <h5>Let Rotary use the functionality of the cloud to save your basic profile including your name, address, and phone number so
-            you never have to manually type it in. And, trust us, it will never get stolen.</h5>
+            <h5>You can select any number of people to be sent a notification for any number of seqential knocks.</h5>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row signup">
+        <div class="row signup section">
             <h6>Get notified when we launch.</h6><br>
 
             <div class="col-xs-11 col-xs-offset-1">
                 <form class="form-inline">
-                    <div class="form-group col-xs-3" id="firstName">
+                    <div class="form-group" id="firstName">
                         <input class="form-control input-lg" id="firstName" name="firstName" placeholder="First Name" type="name">
                     </div>
 
-                    <div class="form-group col-xs-3" id="email">
+                    <div class="form-group" id="email">
                         <input class="form-control input-lg" id="email" name="email" placeholder="Email" type="email">
                     </div>
 
-                    <div class="col-xs-3" id="signUp">
+                    <div class="form-group" id="signUp">
                         <input class="btn btn-success btn-block btn-lg" tabindex="7" type="submit" value="SIGN UP NOW">
                     </div>
                 </form>
             </div>
         </div>
-    </div><!-- container -->
 
     <div class="footer">
         <div class="container">
-            <em>Copyright © 2014 WhosThere?</em>
+            <em>Copyright © 2014 <span class="us">Who's There?</span></em>
         </div>
     </div>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="js/main.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>
