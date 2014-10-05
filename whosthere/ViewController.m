@@ -176,20 +176,6 @@ int x;
         NSArray *userIds = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeysForObject:[NSNumber numberWithInt: self.knockCounter]];
         for( NSString *userId in userIds){
             [self sendNotificationToUserWithObjectId:userId];
-            
-            PFObject *recentKnock = [PFObject objectWithClassName:@"History"];
-            recentKnock[@"senderId"] = [PFUser currentUser].objectId;
-            recentKnock[@"recipientId"] = userId;
-            recentKnock[@"message"] = [NSString stringWithFormat:@"%@ Knocked you up",[PFUser currentUser][@"displayName"]];
-            
-            NSDate *currentTime = [NSDate date];
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-            [dateFormatter setDateFormat:@"MMM d, K:mm a"];
-            recentKnock[@"sentTime"] = [dateFormatter stringFromDate: currentTime];
-            
-            [recentKnock saveInBackground];
-            
         }
         //NSString *sendId = [NSUserDefaults standardUserDefaults][@"object]
     }
@@ -208,6 +194,19 @@ int x;
     NSString *message = [NSString stringWithFormat:@"%@\n-%@", [NSUD objectForKey:@"message"], [PFUser currentUser][@"displayName"]];
     [push setMessage:message];
     [push sendPushInBackground];
+    
+    PFObject *recentKnock = [PFObject objectWithClassName:@"History"];
+    recentKnock[@"senderId"] = [PFUser currentUser].objectId;
+    recentKnock[@"recipientId"] = objId;
+    recentKnock[@"message"] = message;
+    
+    NSDate *currentTime = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    [dateFormatter setDateFormat:@"MMM d, K:mm a"];
+    recentKnock[@"sentTime"] = [dateFormatter stringFromDate: currentTime];
+    
+    [recentKnock saveInBackground];
    
 }
 
@@ -216,6 +215,7 @@ int x;
     NSString *message = self.defaultMessage.text;
     [def setObject:message forKey:@"message"];
     [def synchronize];
+    
 }
 
 - (IBAction)editingBegin:(id)sender {
