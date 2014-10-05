@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CoreMotion.h>
 
 @interface HomeViewController : UIViewController
-
+@property(nonatomic, retain) NSMutableArray *zvals;
+@property (strong, nonatomic) CMMotionManager *motionManager;
 @end
