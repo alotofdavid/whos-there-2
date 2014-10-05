@@ -119,8 +119,6 @@ int x;
     
     if ([self.zvals count] > 2) {
         if([self detectKnock:[self.zvals objectAtIndex:0]:[self.zvals objectAtIndex:1]:[self.zvals objectAtIndex:2]]) {
-            self.knockLabel.text = @"KNOCK!";
-  
             if(self.readyToListen){
                 x++;
                 self.knockCounter++;
@@ -132,12 +130,8 @@ int x;
                 [self performSelector:@selector(reportNumKnocks) withObject:nil afterDelay: self.varyingDelay];
                 
             }
-        } else {
-            self.knockLabel.text = @"";
         }
     }
-    
-    
 }
 -(void)resetReadyToListen{
     self.readyToListen = YES;
@@ -160,7 +154,6 @@ int x;
         }
     }
     self.knockCounter = 0;
-
 }
 -(void)vibratePhone{
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
