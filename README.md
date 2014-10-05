@@ -24,3 +24,7 @@ The ability to send notifications without any thoughtful interaction with the ph
 
 ### Anything else
 What's limiting this app to sending notifications? The knock detection scheme could be used to trigger any events. Turning on/off light switches. 
+
+How do? 
+-------
+![Graph](http://i.imgur.com/FuGCbTV)
