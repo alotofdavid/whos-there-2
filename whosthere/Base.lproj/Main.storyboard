@@ -76,9 +76,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="bfb-l7-Uly" kind="relationship" relationship="viewControllers" id="K5R-YY-af8"/>
-                        <segue destination="gAO-pc-ekc" kind="relationship" relationship="viewControllers" id="pO6-Fm-NzJ"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="MYJ-vL-4fB"/>
+                        <segue destination="gAO-pc-ekc" kind="relationship" relationship="viewControllers" id="pO6-Fm-NzJ"/>
+                        <segue destination="bfb-l7-Uly" kind="relationship" relationship="viewControllers" id="K5R-YY-af8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EaS-k9-UEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
