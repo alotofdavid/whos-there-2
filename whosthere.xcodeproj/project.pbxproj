@@ -36,6 +36,7 @@
 		6FA3D0CC19DFD55F0095E844 /* whosthereTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA3D0CB19DFD55F0095E844 /* whosthereTests.m */; };
 		6FF40B7419E0174C0009465B /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF40B7319E0174C0009465B /* CustomTableViewCell.m */; };
 		ED5A28CC19E00D6000C18156 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5A28CB19E00D6000C18156 /* FriendsViewController.m */; };
+		F345729119E0BE26009F343A /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F345729019E0BE26009F343A /* NotificationViewController.m */; };
 		F36A72AD19E012AF0069D8B6 /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A72AC19E012AF0069D8B6 /* GraphView.m */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,8 @@
 		6FF40B7319E0174C0009465B /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		ED5A28CA19E00D6000C18156 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		ED5A28CB19E00D6000C18156 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		F345728F19E0BE26009F343A /* NotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
+		F345729019E0BE26009F343A /* NotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
 		F36A72AB19E012AF0069D8B6 /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphView.h; sourceTree = "<group>"; };
 		F36A72AC19E012AF0069D8B6 /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,6 +185,8 @@
 				6FA3D0B619DFD55E0095E844 /* ViewController.h */,
 				6FA3D0B719DFD55E0095E844 /* ViewController.m */,
 				6FA3D0B919DFD55E0095E844 /* Main.storyboard */,
+				F345728F19E0BE26009F343A /* NotificationViewController.h */,
+				F345729019E0BE26009F343A /* NotificationViewController.m */,
 				F36A72AB19E012AF0069D8B6 /* GraphView.h */,
 				F36A72AC19E012AF0069D8B6 /* GraphView.m */,
 				6FF40B7219E0174C0009465B /* CustomTableViewCell.h */,
@@ -334,6 +339,7 @@
 				F36A72AD19E012AF0069D8B6 /* GraphView.m in Sources */,
 				6FF40B7419E0174C0009465B /* CustomTableViewCell.m in Sources */,
 				6FA3D0B819DFD55E0095E844 /* ViewController.m in Sources */,
+				F345729119E0BE26009F343A /* NotificationViewController.m in Sources */,
 				6FA3D0B519DFD55E0095E844 /* AppDelegate.m in Sources */,
 				6FA3D0B219DFD55E0095E844 /* main.m in Sources */,
 			);

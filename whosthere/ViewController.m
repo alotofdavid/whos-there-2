@@ -191,13 +191,28 @@ int x;
     if(self.knockCounter > 1){
         NSLog(@"REGISTERING %d KNOCKS BITCH!",self.knockCounter);
         
-
+        
         PFObject *knock = [PFObject objectWithClassName:@"KNOCK"];
         knock[@"count"] = [NSNumber numberWithInt:self.knockCounter];
         [knock saveInBackground];
+        
         NSArray *userIds = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeysForObject:[NSNumber numberWithInt: self.knockCounter]];
         for( NSString *userId in userIds){
             [self sendNotificationToUserWithObjectId:userId withMessage:[NSString stringWithFormat:@"%@ Knocked you up",[PFUser currentUser][@"displayName"]]];
+            
+            PFObject *recentKnock = [PFObject objectWithClassName:@"History"];
+            recentKnock[@"senderId"] = [PFUser currentUser].objectId;
+            recentKnock[@"recipientId"] = userId;
+            recentKnock[@"message"] = [NSString stringWithFormat:@"%@ Knocked you up",[PFUser currentUser][@"displayName"]];
+            
+            NSDate *currentTime = [NSDate date];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+            [dateFormatter setDateFormat:@"MMM d, K:mm a"];
+            recentKnock[@"sentTime"] = [dateFormatter stringFromDate: currentTime];
+            
+            [recentKnock saveInBackground];
+            
         }
         //NSString *sendId = [NSUserDefaults standardUserDefaults][@"object]
     }

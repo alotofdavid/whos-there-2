@@ -52,7 +52,7 @@
         [def setInteger:defaultValue forKey:[obj objectId]];
         [def synchronize];
     }
-    ((CustomTableViewCell *)cell).numberField.text = [NSString stringWithFormat:@"%d",[def integerForKey:[obj objectId]]];
+    ((CustomTableViewCell *)cell).numberField.text = [NSString stringWithFormat:@"%ld",(long)[def integerForKey:[obj objectId]]];
     ((CustomTableViewCell *)cell).idForCell = [obj objectId];
     //check to see if an entry exists in NSUser defualts
     //if it does not, set it to default value
