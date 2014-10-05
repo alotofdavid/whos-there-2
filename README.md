@@ -1,6 +1,6 @@
 WhosThere
 ==========
-
+![WhosThere Image](http://imgur.com/mwaIWyZ.jpg)
 Knock, knock, I'm here. With WhosThere, you can send hassle free notifications to your friends with a rap of your knuckles. (You can even leave it in your pocket!) 
 
 We leveraged the iPhone's accelerometer in tandem with the Parse/Facebook API to convert sequences of 'knock' impulses into live notifications sent to your Facebook friends. 
@@ -25,6 +25,9 @@ The ability to send notifications without any thoughtful interaction with the ph
 ### Anything else
 What's limiting this app to sending notifications? The knock detection scheme could be used to trigger any events. Turning on/off light switches. 
 
-How do? 
+How do you detect Knocks?
 -------
-![Graph](http://i.imgur.com/FuGCbTV)
+![Graph](http://i.imgur.com/tCEsOrh.jpg)
+We sampled the accelerometer data to determine what registered when knocking on the phone. We recorded a bunch of sample signals, some including knocks and some containing just noise. We used python to develop an algorithm based on a high pass filter that would reject low frequency noise. We ran very rudimentary machine learning routines to determine the optimal threshold values for our filter and then ported to Objective-C!
+
+
