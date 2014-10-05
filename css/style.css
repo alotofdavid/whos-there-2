@@ -4,16 +4,6 @@ font-family: myFont;
 src: url(../Lintel-Regular.otf);
 }
 
-
-/* background setup */
-.background {
-    background-repeat:no-repeat;
-    /* custom background-position */
-    background-position:50% 50%;
-    /* ie8- graceful degradation */
-    background-position:50% 50%9 !important;
-}
-
 /* fullscreen setup */
 html, body {
     /* give this to all tags from html to .fullscreen */
@@ -32,12 +22,6 @@ html, body {
     overflow:hidden;
 }
 
-.navigation{
-    right: 10px;
-    top: 10px;
-    z-index: 100;
-    position: fixed;
-}
 
 /* content centering styles */
 .content-a {
@@ -50,6 +34,30 @@ html, body {
     text-align:center;
 }
 
+/////////////////////////////////////////////////
+
+/* background setup */
+.background {
+    background-repeat:no-repeat;
+    /* custom background-position */
+    background-position:50% 50%;
+    /* ie8- graceful degradation */
+    background-position:50% 50%9 !important;
+}
+
+.navigation{
+    right: 15px;
+    top: 15px;
+    z-index: 100;
+    position: fixed;
+    font: 25px;
+}
+
+.navigation span{
+    padding: 12px;
+    margin: 3px;
+    background-color: rgba(200,100,50,.6);
+}
 
 .header{
     background: url(../imgs/header.jpg) no-repeat center center fixed;
@@ -62,7 +70,6 @@ html, body {
     letter-spacing: .1em;
     text-align: center;
     text-shadow: 1px 1px 3px black;
-    color: white;
 }
 
 
@@ -72,25 +79,26 @@ html, body {
     margin: 0;
     padding-top: 50px;
     padding-bottom: 30px;
+    color: white;
 }
 
-.header h6{ 
+.header h6, .signup h6{ 
     font-size: 28px;
     margin: 0;
     padding: 0;
-
+    color: white;
 }
 
+h3{
+    text-transform: uppercase !important;
+}
 
 .signup{
     padding: 50px;
     background-color: #1c273f;
     margin: 0 !important;
     min-width: 800px;
-
-
 }
-
 
 .content1{
     background-color: white;
@@ -98,11 +106,10 @@ html, body {
     padding: 50px 0 50px 0;
     line-height: 1.7em;
     font-size: 16px;
-    
-    
+    padding-left: 30px;
 }
 
-.content1 p, .content1 h2{
+.content1 p, .content1 h2, .content2 p, .content2 h2{
     text-align: left !important;
     
 }
@@ -114,29 +121,17 @@ html, body {
     padding: 50px 0 50px 0;
     line-height: 2em;
     font-size: 16px;
-    
+    padding-left: 30px;
     
 }
 
 .content3{
     background-color: white;
     color: #21314a;
-    padding: 50px 0 10px 0;
-    line-height: 1.7em;
-    font-size: 16px;
-    
-    
+    padding: 50px 20px;
+    line-height: 2em;
+    font-size: 16px;    
 }
-
-.content2 p, .content2 h2{
-    text-align: left !important;
-    
-}
-
-h5{
-    padding: 0 80px;
-}
-
 
 .footer{
     background-color: #403c3c;
@@ -146,7 +141,6 @@ h5{
     margin: 0 !important;
     letter-spacing: .1em;
     min-width: 800px;
-
 }
 
 .row{
@@ -157,4 +151,58 @@ h5{
 .us{
     color: #1192ce;
     font-weight: 800;
+}
+
+.feat{
+    font-size: 40px;
+}
+
+.col-xs-12, .col-sm-4, .col-sm-6{
+    padding: 20px 0 !important;
+}
+
+.form-control{
+    background-color: transparent !important;
+    margin: 0 10px !important;
+    border: 1px solid #1871b6 !important;
+    color: #1871b6 !important;
+}
+
+.form-control:focus{
+    border: 1px solid #88FFC9 !important;
+    color: #88FFC9 !important;
+    box-shadow: none !important;
+
+}
+
+.form-control:focus::-webkit-input-placeholder {
+    color: #88FFC9 !important;
+}
+
+.form-control:focus:-moz-placeholder { /* Firefox 18- */
+    color: #88FFC9 !important;
+}
+
+.form-control:focus::-moz-placeholder {  /* Firefox 19+ */
+    color: #88FFC9 !important;
+}
+
+.form-control:focus:-ms-input-placeholder {  
+    color: #88FFC9 !important;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #1871b6 !important;
+}
+
+.form-control:-moz-placeholder { /* Firefox 18- */
+    color: #1871b6 !important;
+}
+
+.form-control::-moz-placeholder {  /* Firefox 19+ */
+    color: #1871b6 !important;
+}
+
+.form-control:-ms-input-placeholder {  
+    color: #1871b6 !important;
 }
