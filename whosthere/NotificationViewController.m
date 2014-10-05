@@ -59,7 +59,6 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *notifications, NSError *error) {
         self.notificationArray = [notifications mutableCopy];
-        NSLog(@"%@",self.notificationArray);
         [self.tableView reloadData];
     }];
 }

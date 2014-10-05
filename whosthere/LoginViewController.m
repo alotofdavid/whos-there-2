@@ -19,7 +19,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"hi");
     [super viewDidAppear:YES];
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {//if we are already logged in at application open -weston
         [PFFacebookUtils initializeFacebook]; //this fixed user persistence, but might be gay
@@ -36,7 +35,6 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSLog(@"HI");
     
 }
 - (IBAction)loginbuttonHandler {
@@ -80,14 +78,13 @@
 
 
 - (void)_presentUserDetailsViewControllerAnimated:(BOOL)animated {
-    NSLog(@"SDFSJFKSFL");
 }
 -(void)storeFacebookProfilePicture{//and some other info lol
-    NSLog(@"function was called");
+    NSLog(@"Function was called");
     FBRequest *request = [FBRequest requestForMe];
     [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error){
         if(!error){
-            NSLog(@"no error");
+            NSLog(@"No error");
             NSDictionary *userData = (NSDictionary *)result;
             NSString *facebookID = userData[@"id"];
             NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?width=200&height=200", facebookID]];
@@ -100,7 +97,7 @@
             [[PFUser currentUser] saveInBackground];
             
         }else{
-            NSLog(@"TAKE CAER OOF ERROR");
+            NSLog(@"TAKE CARE OF ERROR!");
         }
         
         

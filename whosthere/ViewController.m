@@ -18,19 +18,15 @@
 //higher sensitivity is less sensitive
 
 @interface ViewController ()
-
-@property (nonatomic, retain) IBOutlet UILabel *labelX;
-@property (nonatomic, retain) IBOutlet UILabel *labelY;
-@property (nonatomic, retain) IBOutlet UILabel *labelZ;
-
-@property (nonatomic, retain) IBOutlet UIProgressView *progressX;
-@property (nonatomic, retain) IBOutlet UIProgressView *progressY;
-@property (nonatomic, retain) IBOutlet UIProgressView *progressZ;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 @property (weak, nonatomic) IBOutlet GraphView *graphV;
 @property BOOL readyToListen;
 @property int knockCounter;
 @property int varyingDelay;
+
+@property (strong, nonatomic) IBOutlet UITextField *defaultMessage;
+
 @end
 
 @implementation ViewController
@@ -46,7 +42,7 @@ int y= 0;
                          [NSNumber numberWithFloat:4.7],
                          [NSNumber numberWithFloat:6.6],
                          [NSNumber numberWithFloat:6.9],nil];
-    
+
     /*NSMutableArray *testSignal = [[NSMutableArray alloc] init];
     for (float i=0; i<10; i++) {
         NSNumber* num = [[NSNumber alloc] initWithFloat:testValues[i]];
@@ -74,26 +70,20 @@ int y= 0;
         
         });
     }];
-
-
+    
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    if([def objectForKey:@"message"] == nil){
+        [def setObject:self.defaultMessage.text forKey:@"message"];
+    }
+    self.defaultMessage.text = [def objectForKey:@"message"];
+    
+    self.doneButton.enabled = NO;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-   /* self.labelX.text = [NSString stringWithFormat:@"%@%f", @"X: ", acceleration.x];
-    self.labelY.text = [NSString stringWithFormat:@"%@%f", @"Y: ", acceleration.y];
-    self.labelZ.text = [NSString stringWithFormat:@"%@%f", @"Z: ", acceleration.z];
-    
-    self.progressX.progress = ABS(acceleration.x);
-    self.progressY.progress = ABS(acceleration.y);
-    self.progressZ.progress = ABS(acceleration.z);*/
-   // NSLog(@"X is %f, Y is %f, Z is %f",acceleration.x, acceleration.y, acceleration.z);
-   
-}
 
 - (BOOL)detectKnock:(NSNumber*)first:(NSNumber*)second:(NSNumber*)third {
     int down_edge = -100;
@@ -129,19 +119,6 @@ int x;
     
     CMAcceleration acceleration = accelerometerData.acceleration;
 
-    //////////////////////////////////////////////////////////////////
-    
-    ////  THIS SLOWS DOWN A LOT SINCE IT UPDATES TEXT A LOT
-//    
-//    self.labelX.text = [NSString stringWithFormat:@"%@%f", @"X: ", acceleration.x];
-//    self.labelY.text = [NSString stringWithFormat:@"%@%f", @"Y: ", acceleration.y];
-//    self.labelZ.text = [NSString stringWithFormat:@"%@%f", @"Z: ", acceleration.z];
-//    
-//    self.progressX.progress = ABS(acceleration.x);
-//    self.progressY.progress = ABS(acceleration.y);
-//    self.progressZ.progress = ABS(acceleration.z);
-//    NSLog(@"X is %f, Y is %f, Z is %f",acceleration.x, acceleration.y, acceleration.z);
-    
     //////////////////////////////////////
     
     [[self view] setNeedsDisplay];
@@ -170,7 +147,7 @@ int x;
                 x++;
                 self.knockCounter++;
                 self.readyToListen = NO;
-                NSLog(@"KNOCK BITCH %i", x);
+                NSLog(@"Knock number: %i", x);
                 [self performSelector:@selector(resetReadyToListen) withObject:nil afterDelay:SAMPLE_DELAY];
                 [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(reportNumKnocks) object: nil];
 
@@ -189,7 +166,7 @@ int x;
 }
 -(void)reportNumKnocks{
     if(self.knockCounter > 1){
-        NSLog(@"REGISTERING %d KNOCKS BITCH!",self.knockCounter);
+        NSLog(@"Registered %d Knocks",self.knockCounter);
         
         
         PFObject *knock = [PFObject objectWithClassName:@"KNOCK"];
@@ -198,7 +175,7 @@ int x;
         
         NSArray *userIds = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeysForObject:[NSNumber numberWithInt: self.knockCounter]];
         for( NSString *userId in userIds){
-            [self sendNotificationToUserWithObjectId:userId withMessage:[NSString stringWithFormat:@"%@ Knocked you up",[PFUser currentUser][@"displayName"]]];
+            [self sendNotificationToUserWithObjectId:userId];
             
             PFObject *recentKnock = [PFObject objectWithClassName:@"History"];
             recentKnock[@"senderId"] = [PFUser currentUser].objectId;
@@ -220,33 +197,35 @@ int x;
 
 }
 
-- (IBAction)sendNotification:(id)sender {
-    
-    // Create our Installation query
-    PFQuery *pushQuery = [PFInstallation query];
-    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
-    
-    // Send push notification to query
-    [PFPush sendPushMessageToQueryInBackground:pushQuery
-                                   withMessage:@"Knock Knock bitch"];
-    
-}
--(void)sendNotificationToUserWithObjectId:(NSString *)objId withMessage:(NSString *)msg{
-    
-//    PFQuery *pushQuery = [PFInstallation query];
-//    [pushQuery whereKey:@"owner" equalTo:@"QdTdFwYB44"];
-//    [PFPush sendPushMessageToQueryInBackground:pushQuery
-//                                   withMessage:msg];
-//    NSLog(@"sent alert");
+
+-(void)sendNotificationToUserWithObjectId:(NSString *)objId{
     PFQuery *pushQuery = [PFInstallation query];
     [pushQuery whereKey:@"owner" equalTo:objId];
-    //    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
     
     PFPush *push = [[PFPush alloc] init];
     [push setQuery:pushQuery];
-    [push setMessage:[NSString stringWithFormat: @"New Message from %@!",  [PFUser currentUser][@"displayName"]]];
+    NSUserDefaults *NSUD = [NSUserDefaults standardUserDefaults];
+    NSString *message = [NSString stringWithFormat:@"%@\n-%@", [NSUD objectForKey:@"message"], [PFUser currentUser][@"displayName"]];
+    [push setMessage:message];
     [push sendPushInBackground];
    
+}
+
+- (IBAction)editMessage:(id)sender {
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    NSString *message = self.defaultMessage.text;
+    [def setObject:message forKey:@"message"];
+    [def synchronize];
+}
+
+- (IBAction)editingBegin:(id)sender {
+    self.doneButton.enabled = YES;
+}
+
+
+- (IBAction)doneButtonPressed:(id)sender {
+    self.doneButton.enabled = NO;
+    [self.view endEditing:YES];
 }
 
 @end
