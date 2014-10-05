@@ -119,8 +119,6 @@ int x;
     
     if ([self.zvals count] > 2) {
         if([self detectKnock:[self.zvals objectAtIndex:0]:[self.zvals objectAtIndex:1]:[self.zvals objectAtIndex:2]]) {
-            self.knockLabel.text = @"KNOCK!";
-  
             if(self.readyToListen){
                 x++;
                 self.knockCounter++;
@@ -132,12 +130,8 @@ int x;
                 [self performSelector:@selector(reportNumKnocks) withObject:nil afterDelay: self.varyingDelay];
                 
             }
-        } else {
-            self.knockLabel.text = @"";
         }
     }
-    
-    
 }
 -(void)resetReadyToListen{
     self.readyToListen = YES;
@@ -146,19 +140,12 @@ int x;
     if(self.knockCounter > 1){
         NSLog(@"Registered %d Knocks",self.knockCounter);
         
-        
-        PFObject *knock = [PFObject objectWithClassName:@"KNOCK"];
-        knock[@"count"] = [NSNumber numberWithInt:self.knockCounter];
-        [knock saveInBackground];
-        
         NSArray *userIds = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeysForObject:[NSNumber numberWithInt: self.knockCounter]];
         for( NSString *userId in userIds){
             [self sendNotificationToUserWithObjectId:userId];
         }
-        //NSString *sendId = [NSUserDefaults standardUserDefaults][@"object]
     }
     self.knockCounter = 0;
-
 }
 
 
