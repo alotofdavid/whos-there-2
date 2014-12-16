@@ -62,16 +62,16 @@
 
 }
 
-- (BOOL)detectKnock:(NSNumber*)first:(NSNumber*)second:(NSNumber*)third {
+- (BOOL)detectKnock:(NSNumber*)firstArg and:(NSNumber*) secondArg and:(NSNumber*)thirdArg {
     //float slope = .18;
     float slope = KNOCK_DETECT_SENSITIVITY;
-    if ([first floatValue] - [second floatValue] > slope) {
-        if ([third floatValue] - [second floatValue] > slope) {
+    if ([firstArg floatValue] - [secondArg floatValue] > slope) {
+        if ([thirdArg floatValue] - [secondArg floatValue] > slope) {
             return true;
         }
     }
-    if ([first floatValue] - [second floatValue] < -1*slope) {
-        if ([third floatValue] - [second floatValue] < -1*slope) {
+    if ([firstArg floatValue] - [secondArg floatValue] < -1*slope) {
+        if ([thirdArg floatValue] - [secondArg floatValue] < -1*slope) {
             return true;
         }
     }
@@ -92,7 +92,7 @@
     [self.zvals insertObject:[[NSNumber alloc] initWithFloat:acceleration.z] atIndex:0];
     
     if ([self.zvals count] > 2) {
-        if([self detectKnock:[self.zvals objectAtIndex:0]:[self.zvals objectAtIndex:1]:[self.zvals objectAtIndex:2]]) {
+        if([self detectKnock:[self.zvals objectAtIndex:0] and:[self.zvals objectAtIndex:1] and:[self.zvals objectAtIndex:2]]) {
             if(self.readyToListen){
                 self.knockCounter++;
                 self.readyToListen = NO;
@@ -114,7 +114,6 @@
         NSArray *userIds = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeysForObject:[NSNumber numberWithInt: self.knockCounter]];
         NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
         if([userIds count] > 0 ){
-            NSLog(@"%hhd",[def boolForKey:@"vibrationSettings"]);
             if([def boolForKey:@"vibrationSettings"]){
                 for(int i = 0; i < self.knockCounter; i++) {
                     [self performSelector:@selector(vibratePhone) withObject:nil afterDelay:i/1.75];

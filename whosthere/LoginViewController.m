@@ -38,13 +38,16 @@
     
 }
 - (IBAction)loginbuttonHandler {
+    NSLog(@"LOGGING IN");
     NSArray *permissionsArray = @[@"user_friends"];
     //These are the things we ask facebook to know about the user
     
     [PFFacebookUtils initializeFacebook];
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         if(error){
-            return;
+            NSLog(@"error");
+            NSLog(@"%@",[error localizedDescription]);
+            //return;
         }
         [self setCurrentSessionUser:user];
         // [_activityIndicator stopAnimating]; // Hide loading indicator
