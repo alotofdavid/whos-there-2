@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 #import <Parse/Parse.h>
-
+#import <AVFoundation/AVFoundation.h>
 #define DATA_SIZE 5
 #define SAMPLE_DELAY 0.1
 #define KNOCK_DETECT_SENSITIVITY 0.65
@@ -21,6 +21,9 @@
 @property BOOL readyToListen;
 @property int knockCounter;
 @property int varyingDelay;
+
+@property (nonatomic, strong) AVQueuePlayer *player;//for audio stuff
+@property (nonatomic, strong) id timeObserver;
 
 @end
 
@@ -57,8 +60,13 @@
                 NSLog(@"%@", error);
             }
         
-    });
-                                             }];
+        });
+            }];
+    // Set AVAudioSession
+    NSError *sessionError = nil;
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&sessionError];
 
 }
 
@@ -72,6 +80,7 @@
     }
     if ([firstArg floatValue] - [secondArg floatValue] < -1*slope) {
         if ([thirdArg floatValue] - [secondArg floatValue] < -1*slope) {
+            NSLog(@"Detected a knock");
             return true;
         }
     }

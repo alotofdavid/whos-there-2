@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Parse/Parse.h>
+#import <AVFoundation/AVFoundation.h>
 
 
 @interface AppDelegate ()
@@ -47,6 +48,12 @@ UIBackgroundTaskIdentifier bgTask;
         [application registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
     }
+    
+    
+    NSError *sessionError = nil;
+    NSError *activationError = nil;
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error:&sessionError];
+    [[AVAudioSession sharedInstance] setActive: YES error: &activationError];
     
     
     return YES;

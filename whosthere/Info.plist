@@ -32,7 +32,7 @@
 	<key>FacebookAppID</key>
 	<string>1475559416044636</string>
 	<key>FacebookDisplayName</key>
-	<string>Who's There</string>
+	<string>Who&apos;s There</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -40,14 +40,7 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
-		<string>bluetooth-central</string>
-		<string>bluetooth-peripheral</string>
-		<string>external-accessory</string>
-		<string>fetch</string>
-		<string>location</string>
-		<string>newsstand-content</string>
 		<string>remote-notification</string>
-		<string>voip</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Main</string>
@@ -68,5 +61,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIApplicationExitsOnSuspend</key>
+	<false/>
 </dict>
 </plist>
