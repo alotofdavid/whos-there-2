@@ -27,6 +27,7 @@
 		6F1E1DA719DFE6F300255B27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F1E1DA619DFE6F300255B27 /* Foundation.framework */; };
 		6F1E1DA919DFE70C00255B27 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F1E1DA819DFE70C00255B27 /* FacebookSDK.framework */; };
 		6F3CE8B219DFE41A00BA1E4D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F3CE8B119DFE41A00BA1E4D /* Parse.framework */; };
+		6F5B8BC51A412CF100DBBE50 /* blank.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6F5B8BC41A412CF100DBBE50 /* blank.mp3 */; };
 		6FA3D0B219DFD55E0095E844 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA3D0B119DFD55E0095E844 /* main.m */; };
 		6FA3D0B519DFD55E0095E844 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA3D0B419DFD55E0095E844 /* AppDelegate.m */; };
 		6FA3D0B819DFD55E0095E844 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA3D0B719DFD55E0095E844 /* ViewController.m */; };
@@ -72,6 +73,7 @@
 		6F1E1DA619DFE6F300255B27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F1E1DA819DFE70C00255B27 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		6F3CE8B119DFE41A00BA1E4D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		6F5B8BC41A412CF100DBBE50 /* blank.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = blank.mp3; path = ../../blank.mp3; sourceTree = "<group>"; };
 		6FA3D0AC19DFD55E0095E844 /* whosthere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whosthere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA3D0B019DFD55E0095E844 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FA3D0B119DFD55E0095E844 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				6FA3D0B019DFD55E0095E844 /* Info.plist */,
+				6F5B8BC41A412CF100DBBE50 /* blank.mp3 */,
 				6FA3D0B119DFD55E0095E844 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -318,6 +321,7 @@
 			files = (
 				6FA3D0BB19DFD55E0095E844 /* Main.storyboard in Resources */,
 				6FA3D0BD19DFD55E0095E844 /* Images.xcassets in Resources */,
+				6F5B8BC51A412CF100DBBE50 /* blank.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

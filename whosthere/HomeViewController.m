@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import <Parse/Parse.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 #define DATA_SIZE 5
 #define SAMPLE_DELAY 0.1
@@ -22,7 +23,7 @@
 @property int knockCounter;
 @property int varyingDelay;
 
-@property (nonatomic, strong) AVQueuePlayer *player;//for audio stuff
+@property (nonatomic, strong) AVAudioPlayer *player;//for audio stuff
 @property (nonatomic, strong) id timeObserver;
 
 @end
@@ -67,7 +68,21 @@
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
     [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&sessionError];
+    [self playSound];
 
+}
+- (void) playSound     //method in .m file
+{
+//    NSArray *queue = @[
+//                       [AVPlayerItem playerItemWithURL:[[NSBundle mainBundle] URLForResource:@"IronBacon" withExtension:@"mp3"]],
+//                       [AVPlayerItem playerItemWithURL:[[NSBundle mainBundle] URLForResource:@"FeelinGood" withExtension:@"mp3"]],
+//                       [AVPlayerItem playerItemWithURL:[[NSBundle mainBundle] URLForResource:@"WhatYouWant" withExtension:@"mp3"]]];
+//    
+//    self.player = [[AVQueuePlayer alloc] initWithItems:queue];
+//    self.player.actionAtItemEnd = AVPlayerActionAtItemEndAdvance;
+    self.player = [[AVAudioPlayer alloc]initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"blank" withExtension:@"mp3"] error:nil];
+    self.player.numberOfLoops = -1;
+    [self.player play];
 }
 
 - (BOOL)detectKnock:(NSNumber*)firstArg and:(NSNumber*) secondArg and:(NSNumber*)thirdArg {
