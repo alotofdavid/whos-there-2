@@ -76,13 +76,13 @@ UIBackgroundTaskIdentifier bgTask;
     }];
     
     // Start the long-running task and return immediately.
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        // Do the work associated with the task, preferably in chunks.
-        while(true){}
-        [application endBackgroundTask:bgTask];
-        bgTask = UIBackgroundTaskInvalid;
-    });
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        
+//        // Do the work associated with the task, preferably in chunks.
+//        while(true){}
+//        [application endBackgroundTask:bgTask];
+//        bgTask = UIBackgroundTaskInvalid;
+//    });
     
 }
 

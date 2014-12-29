@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
+#import "MMPDeepSleepPreventer.h"
 #define DATA_SIZE 5
 #define SAMPLE_DELAY 0.1
 #define KNOCK_DETECT_SENSITIVITY 0.65
@@ -23,9 +24,11 @@
 @property int knockCounter;
 @property int varyingDelay;
 
+
 @property (nonatomic, strong) AVAudioPlayer *player;//for audio stuff
 @property (nonatomic, strong) id timeObserver;
 
+@property (nonatomic, retain) MMPDeepSleepPreventer *deepSleepPreventer;
 @end
 
 @implementation HomeViewController
@@ -64,22 +67,17 @@
         });
             }];
     // Set AVAudioSession
-    NSError *sessionError = nil;
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
-    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&sessionError];
-    [self playSound];
+//    NSError *sessionError = nil;
+//    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+//    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&sessionError];
+//    [self playSound];
+    self.deepSleepPreventer = [[MMPDeepSleepPreventer alloc] init];
+    [self.deepSleepPreventer startPreventSleep];
 
 }
-- (void) playSound     //method in .m file
-{
-//    NSArray *queue = @[
-//                       [AVPlayerItem playerItemWithURL:[[NSBundle mainBundle] URLForResource:@"IronBacon" withExtension:@"mp3"]],
-//                       [AVPlayerItem playerItemWithURL:[[NSBundle mainBundle] URLForResource:@"FeelinGood" withExtension:@"mp3"]],
-//                       [AVPlayerItem playerItemWithURL:[[NSBundle mainBundle] URLForResource:@"WhatYouWant" withExtension:@"mp3"]]];
-//    
-//    self.player = [[AVQueuePlayer alloc] initWithItems:queue];
-//    self.player.actionAtItemEnd = AVPlayerActionAtItemEndAdvance;
+- (void) playSound     {
+
     self.player = [[AVAudioPlayer alloc]initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"blank" withExtension:@"mp3"] error:nil];
     self.player.numberOfLoops = -1;
     [self.player play];
@@ -90,6 +88,7 @@
     float slope = KNOCK_DETECT_SENSITIVITY;
     if ([firstArg floatValue] - [secondArg floatValue] > slope) {
         if ([thirdArg floatValue] - [secondArg floatValue] > slope) {
+            NSLog(@"Detected a knock");
             return true;
         }
     }
